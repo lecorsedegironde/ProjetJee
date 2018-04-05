@@ -24,10 +24,39 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Inscription</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<form method="post" action="#">
+								<div class="row uniform">
+									<div class="6u 12u$(xsmall)">
+										<input name="login" id="login" placeholder="Login" type="text">
+									</div>
+									<div class="6u$ 12u$(xsmall)">
+										<input name="pwd" id="pwd" placeholder="Password" type="password">
+									</div>
+									<div class="12u$">
+										<div class="select-wrapper">
+											<select name="prefGame" id="prefGame">
+												<option value="0">- Jeu préféré -</option>
+												<option value="1">Tetris</option>
+												<option value="2">Mario</option>
+												<option value="3">Rayman</option>
+												<option value="4">J'en ai pas</option>
+											</select>
+										</div>
+									</div>
+									<div class="6u$ 12u$(xsmall)">
+										<input type="email" name="mail" id="mail" placeholder="Email" />
+									</div>
+									<div class="6u$ 12u$(xsmall)">
+										<input type="date" name="birthDate" id="birthDate">
+									</div>
+									<div class="12u$">
+										<ul class="actions">
+											<li><input value="Send Message" class="special" type="submit"></li>
+											<li><input value="Reset" type="reset"></li>
+										</ul>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 
