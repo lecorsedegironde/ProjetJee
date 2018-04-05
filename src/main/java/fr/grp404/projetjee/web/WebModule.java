@@ -19,6 +19,7 @@ public class WebModule extends ServletModule {
         serve("/").with(MainServlet.class);
         serve("/signup").with(RegisterServlet.class);
         serve("/signin").with(ConnectionServlet.class);
+        serve("/logout").with(LogOutServlet.class);
 
         serve("/test").with(TestServlet.class);
         serve("/show").with(ShowTestServlet.class);

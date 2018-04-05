@@ -3,6 +3,7 @@ package fr.grp404.projetjee.web.servlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.domain.Role;
 import fr.grp404.projetjee.persistence.domain.User;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ public class ConnectionServlet extends HttpServlet {
     private UserDao userDao;
 
 
-    private final String redirect = "/";
+    private final String redirect = "/signin";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -45,25 +46,33 @@ public class ConnectionServlet extends HttpServlet {
             isLegitUser = false;
         }
 
+        HttpSession session = request.getSession();
+
         if (!isLegitUser) {
+            request.setAttribute("erreur",0);
+            session.removeAttribute("login");
+            session.removeAttribute("admin");
             doGet(request, response);
         } else {
-            HttpSession session = request.getSession();
 
             session.setAttribute("login", login);
 
-
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
-            try {
-                rd.forward(request, response);
-            } catch (ServletException | IOException e) {
-                e.printStackTrace();
+            if(u.getRole() == Role.ADMIN) {
+                session.setAttribute("admin", true);
+            } else {
+                session.removeAttribute("admin");
             }
+
+            doGet(request,response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String toRedirect = getServletContext().getContextPath() + redirect;
-        response.sendRedirect(toRedirect);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/connection.jsp");
+        try {
+            rd.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
