@@ -4,6 +4,7 @@ import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import fr.grp404.projetjee.web.servlet.RegisterServlet;
+import fr.grp404.projetjee.web.servlet.MainServlet;
 import fr.grp404.projetjee.web.servlet.ShowTestServlet;
 import fr.grp404.projetjee.web.servlet.TestServlet;
 
@@ -22,5 +23,6 @@ public class WebModule extends ServletModule {
         serve("/").with(TestServlet.class);
         serve("/show").with(ShowTestServlet.class);
         serve("/register").with(RegisterServlet.class);
+        serve("/test").with(MainServlet.class);
     }
 }
