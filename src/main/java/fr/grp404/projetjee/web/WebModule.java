@@ -20,9 +20,10 @@ public class WebModule extends ServletModule {
         //Permet d'associer un servlet avec une url de manière simple
         //Exemple : Mon servlet s'appelle TestServlet et répond au chemin /
 
+        serve("/").with(MainServlet.class);
+        serve("/signup").with(RegisterServlet.class);
+
         serve("/test").with(TestServlet.class);
         serve("/show").with(ShowTestServlet.class);
-        serve("/signup").with(RegisterServlet.class);
-        serve("/").with(MainServlet.class);
     }
 }
