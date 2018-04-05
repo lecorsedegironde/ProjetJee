@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Singleton
-public class ConnexionServlet extends HttpServlet {
+public class ConnectionServlet extends HttpServlet {
 
     @Inject
     private UserDao userDao;
