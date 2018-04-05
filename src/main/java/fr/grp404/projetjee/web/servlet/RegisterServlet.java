@@ -1,9 +1,9 @@
 package fr.grp404.projetjee.web.servlet;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
 
-import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
