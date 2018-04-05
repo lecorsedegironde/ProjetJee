@@ -30,9 +30,13 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Inscription</h1>
+                            <p>
                             <% if(error!=null) { %>
-                                    <p><%=success%><%=error%></p>
+                                    <%=error%>
+                            <% }else if(success!=null) { %>
+                                <%=success%>
                             <% } %>
+                            </p>
 							<form method="post" action="">
 								<div class="row uniform">
 									<div class="6u 12u$(xsmall)">

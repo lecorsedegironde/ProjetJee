@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet{
     }
 
     private boolean checkLogin(String login) {
-        return userDao.findByLogin(login)==null && login.length()>6;
+        return userDao.findByLogin(login)==null && login.length()>5;
     }
 
     private boolean checkPwd(String pwd) {
@@ -85,7 +85,7 @@ public class RegisterServlet extends HttpServlet{
 
         if(!checkLogin(login)) {
             userRegistered = false;
-            error += "Le login doit être unique et faire au moins 7 caractères. ";
+            error += "Le login doit être unique et faire au moins 6 caractères. ";
         }
 
         if(!checkPwd(password)) {
