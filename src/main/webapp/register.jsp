@@ -24,7 +24,7 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Inscription</h1>
-							<form method="post" action="#">
+							<form method="post" action="">
 								<div class="row uniform">
 									<div class="6u 12u$(xsmall)">
 										<input name="login" id="login" placeholder="Login" type="text">
@@ -51,8 +51,7 @@
 									</div>
 									<div class="12u$">
 										<ul class="actions">
-											<li><input value="Send Message" class="special" type="submit"></li>
-											<li><input value="Reset" type="reset"></li>
+											<li><input value="Inscription" type="submit"></li>
 										</ul>
 									</div>
 								</div>
