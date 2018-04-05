@@ -85,22 +85,22 @@ public class RegisterServlet extends HttpServlet{
 
         if(!checkLogin(login)) {
             userRegistered = false;
-            error += "Le login doit être unique et faire au moins 6 caractères.\n";
+            error += "Le login doit être unique et faire au moins 6 caractères.<br/>";
         }
 
         if(!checkPwd(password)) {
             userRegistered = false;
-            error += "Le mot de passe doit faire au moins 9 caractères.\n";
+            error += "Le mot de passe doit faire au moins 9 caractères.<br/>";
         }
 
         if(!checkMail(mail)) {
             userRegistered = false;
-            error += "L'email est incorrect.\n";
+            error += "L'email est incorrect.<br/>";
         }
 
         if(!checkBirthDate(birthDate)) {
             userRegistered = false;
-            error += "La date de naissance est incorrecte.\n";
+            error += "La date de naissance est incorrecte.<br/>";
         }
 
         if(userRegistered) {
