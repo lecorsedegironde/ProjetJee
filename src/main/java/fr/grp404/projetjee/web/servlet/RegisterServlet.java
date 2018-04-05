@@ -15,12 +15,15 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Singleton
 public class RegisterServlet extends HttpServlet{
 
-    final static String DATE_FORMAT = "dd-MM-yyyy";
+    private final static String DATE_FORMAT = "dd/MM/yyyy";
     @Inject
     private UserDao userDao;
 
@@ -31,7 +34,7 @@ public class RegisterServlet extends HttpServlet{
     }
 
     private boolean checkLogin(String login) {
-        return login.length()>6;
+        return userDao.findByLogin(login)==null && login.length()>6;
     }
 
     private boolean checkPwd(String pwd) {
@@ -71,12 +74,48 @@ public class RegisterServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        boolean userRegistered = true;
+
         String login = req.getParameter("login");
         String password = req.getParameter("pwd");
         String prefGame = req.getParameter("prefGame");
         String mail = req.getParameter("mail");
         String birthDate = req.getParameter("birthDate");
+        String error = "";
 
+        if(!checkLogin(login)) {
+            userRegistered = false;
+            error += "Le login doit être unique et faire au moins 7 caractères. ";
+        }
 
+        if(!checkPwd(password)) {
+            userRegistered = false;
+            error += "Le mot de passe doit faire au moins 9 caractères. ";
+        }
+
+        if(!checkMail(mail)) {
+            userRegistered = false;
+            error += "L'email est incorrect. ";
+        }
+
+        if(!checkBirthDate(birthDate)) {
+            userRegistered = false;
+            error += "La date de naissance est incorrect. ";
+        }
+
+        if(userRegistered) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            LocalDate date = LocalDate.parse(birthDate, formatter);
+            createUser(login, password, Role.USER, Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()), mail);
+            req.setAttribute("success", "Vous êtes inscrit, bienvenue !");
+        }
+
+        req.setAttribute("error", error);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
+        try {
+            rd.forward(req, resp);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

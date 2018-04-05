@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.lang.*" %>
+<%
+    String error=(String) request.getAttribute("error");
+    String success=(String) request.getAttribute("success");
+%>
 <!DOCTYPE HTML>
 <!--
 	Phantom by HTML5 UP
@@ -25,6 +30,9 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Inscription</h1>
+                            <% if(error!=null) { %>
+                                    <p><%=success%><%=error%></p>
+                            <% } %>
 							<form method="post" action="">
 								<div class="row uniform">
 									<div class="6u 12u$(xsmall)">
