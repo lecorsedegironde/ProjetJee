@@ -33,7 +33,8 @@
                             <p>
                             <% if(error!=null) { %>
                                     <%=error%>
-                            <% }else if(success!=null) { %>
+                            <% }
+                               if(success!=null) { %>
                                 <%=success%>
                             <% } %>
                             </p>
@@ -60,7 +61,7 @@
 										<input type="email" name="mail" id="mail" placeholder="Email" required>
 									</div>
 									<div class="6u$ 12u$(xsmall)">
-										<input type="date" name="birthDate" id="birthDate" required>
+										<input type="text" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" required>
 									</div>
 									<div class="12u$">
 										<ul class="actions">
