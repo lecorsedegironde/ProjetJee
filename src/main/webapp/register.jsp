@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <!--
 	Phantom by HTML5 UP
@@ -27,10 +28,10 @@
 							<form method="post" action="">
 								<div class="row uniform">
 									<div class="6u 12u$(xsmall)">
-										<input name="login" id="login" placeholder="Login" type="text">
+										<input name="login" id="login" placeholder="Login" type="text" required>
 									</div>
 									<div class="6u$ 12u$(xsmall)">
-										<input name="pwd" id="pwd" placeholder="Password" type="password">
+										<input name="pwd" id="pwd" placeholder="Password" type="password" required>
 									</div>
 									<div class="12u$">
 										<div class="select-wrapper">
@@ -44,14 +45,14 @@
 										</div>
 									</div>
 									<div class="6u$ 12u$(xsmall)">
-										<input type="email" name="mail" id="mail" placeholder="Email" />
+										<input type="email" name="mail" id="mail" placeholder="Email" required>
 									</div>
 									<div class="6u$ 12u$(xsmall)">
-										<input type="date" name="birthDate" id="birthDate">
+										<input type="date" name="birthDate" id="birthDate" required>
 									</div>
 									<div class="12u$">
 										<ul class="actions">
-											<li><input value="Inscription" type="submit"></li>
+											<li><input class="special" value="Inscription" type="submit"></li>
 										</ul>
 									</div>
 								</div>
