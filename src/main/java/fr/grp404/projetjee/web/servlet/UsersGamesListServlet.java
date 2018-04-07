@@ -2,6 +2,8 @@ package fr.grp404.projetjee.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +19,7 @@ import com.google.inject.Singleton;
 
 import fr.grp404.projetjee.persistence.dao.UserDao;
 import fr.grp404.projetjee.persistence.domain.User;
+import fr.grp404.projetjee.persistence.domain.UserGame;
 //import fr.grp404.projetjee.persistence.domain.UserGame;
 
 /**
@@ -40,18 +43,24 @@ public class UsersGamesListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //List<UserGame> g = userGameDao.findAll();
-		String userGame[] = {"Mario", "pseudo1", "01/01/18 - 18:00"};
-		//UserGame currGame = new UserGame(1, "Mario", "01/01/18 - 18:00");
-				
 		ServletContext sc = getServletContext();
-		//sc.setAttribute("currGame", userGame);
-		sc.setAttribute("name", "pseudo1");
+        //List<UserGame> usersGames = userGameDao.findAll();
+		List<UserGame> usersGames = Arrays.asList(
+				new UserGame(1, 2, "01/01/18 - 18:00"),
+				new UserGame(2, 3, "01/02/18 - 18:00"),
+				new UserGame(3, 4, "01/03/18 - 18:00")
+		);
+		/*List<String> usersGames = Arrays.asList(
+				"01/01/18 - 18:00",
+				"01/02/18 - 18:00",
+				"01/03/18 - 18:00"
+		);*/
+		
+		sc.setAttribute("usersGames", usersGames);
 		RequestDispatcher rd = sc.getRequestDispatcher("/usersGamesList.jsp");
         try {
             rd.forward(request, response);
         } catch (ServletException | IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 	}

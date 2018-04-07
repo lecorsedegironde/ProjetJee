@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.lang.*" %>
 <%
@@ -32,26 +33,18 @@
 							<h1>Liste des parties en cours</h1>
 							<div class="row uniform">
 								<table>
-								   <tr>
-								       <th>Jeu</th>
-								       <th>Pseudo</th>
-								       <th>Date - Heure début</th>
-								   </tr>
-								   <tr>
-								       <td>Mario</td>
-								       <td>${name}</td>
-								       <td>01/01/18 - 18:00</td>
-								   </tr>
-								   <tr>
-								       <td>Mario</td>
-								       <td>pseudo2</td>
-								       <td>01/01/18 - 18:00</td>
-								   </tr>
-								   <tr>
-								       <td>Rayman</td>
-								       <td>pseudo3</td>
-								       <td>01/01/18 - 18:00</td>
-								   </tr>
+									<tr>
+										<th>Jeu en cours</th>
+										<th>Pseudo du joueur</th>
+										<th>Date / Heure début</th>
+									</tr>
+									<c:forEach items="${usersGames}" var="userGame">
+										<tr>
+											<td>${userGame.userName}</td>
+											<td>${userGame.gameName}</td>
+											<td>${userGame.startDateHour}</td>
+										</tr>
+									</c:forEach>
 								</table>
 							</div>
 						</div>
