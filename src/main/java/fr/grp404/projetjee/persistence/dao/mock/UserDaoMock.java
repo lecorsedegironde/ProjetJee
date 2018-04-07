@@ -2,8 +2,10 @@ package fr.grp404.projetjee.persistence.dao.mock;
 
 import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.domain.Role;
 import fr.grp404.projetjee.persistence.domain.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,40 @@ public class UserDaoMock implements UserDao {
 
     public List<User> findAll() {
         return myUsers;
+    }
+
+    @Override
+    public List<User> findByRole(Role role) {
+        ArrayList<User> myRoleUsers = new ArrayList<>();
+        for (User u : myUsers) {
+            if (u.getRole().equals(role)) {
+                myRoleUsers.add(u);
+            }
+        }
+        return myRoleUsers;
+    }
+
+    @Override
+    public List<User> findByBirthDate(LocalDate date) {
+        ArrayList<User> myDateUsers = new ArrayList<>();
+
+        for (User u : myUsers) {
+            if (u.getBirthDate().isEqual(date)) {
+                myDateUsers.add(u);
+            }
+        }
+
+        return myDateUsers;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        for (User u : myUsers) {
+            if (u.getEmail().equals(email)) {
+                return u;
+            }
+        }
+        return null;
     }
 
     public User findByLogin(String login) {

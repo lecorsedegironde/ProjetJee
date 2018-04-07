@@ -9,19 +9,22 @@
 
         <!-- Entites [5] -->
         <class>fr.grp404.projetjee.persistence.domain.User</class>
+        <class>fr.grp404.projetjee.persistence.domain.Game</class>
+        <class>fr.grp404.projetjee.persistence.domain.UserGame</class>
 
         <properties>
             <!-- Login et password [4] -->
-            <property name="javax.persistence.jdbc.password" value="projetjee" />
-            <property name="javax.persistence.jdbc.user" value="jee" />
+            <property name="javax.persistence.jdbc.password" value="projetjee"/>
+            <property name="javax.persistence.jdbc.user" value="jee"/>
 
             <!-- MySQL [2] -->
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             <!-- Adresse [3] -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jee" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jee"/>
 
-            <property name="eclipselink.logging.level" value="INFO" />
+            <property name="eclipselink.logging.level" value="INFO"/>
         </properties>
     </persistence-unit>
 </persistence>

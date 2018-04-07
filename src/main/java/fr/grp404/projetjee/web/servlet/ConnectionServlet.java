@@ -49,7 +49,7 @@ public class ConnectionServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (!isLegitUser) {
-            request.setAttribute("erreur",0);
+            request.setAttribute("erreur", 0);
             session.removeAttribute("login");
             session.removeAttribute("admin");
             doGet(request, response);
@@ -57,13 +57,13 @@ public class ConnectionServlet extends HttpServlet {
 
             session.setAttribute("login", login);
 
-            if(u.getRole() == Role.ADMIN) {
+            if (u.getRole() == Role.ADMIN) {
                 session.setAttribute("admin", true);
             } else {
                 session.removeAttribute("admin");
             }
 
-            doGet(request,response);
+            doGet(request, response);
         }
     }
 

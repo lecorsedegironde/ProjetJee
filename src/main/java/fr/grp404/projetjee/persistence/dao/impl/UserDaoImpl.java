@@ -3,10 +3,12 @@ package fr.grp404.projetjee.persistence.dao.impl;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.domain.Role;
 import fr.grp404.projetjee.persistence.domain.User;
 
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.List;
 
 //TODO
@@ -24,6 +26,21 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List<User> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<User> findByRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public List<User> findByBirthDate(LocalDate date) {
+        return null;
+    }
+
+    @Override
+    public User findByEmail(String email) {
         return null;
     }
 

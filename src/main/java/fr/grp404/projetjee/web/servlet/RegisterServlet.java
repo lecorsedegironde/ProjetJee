@@ -16,20 +16,19 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Singleton
 public class RegisterServlet extends HttpServlet{
 
-    private final static String DATE_FORMAT = "dd/MM/yyyy";
+    private final static String DATE_FORMAT = "yyyy-MM-dd";
     @Inject
     private UserDao userDao;
 
-    private void createUser(final String login, final String password, final Role role,
-                            final Date birthDate, final String email) {
-        User u = new User(login, password, role, birthDate, email);
+    private void createUser(final String login, final String password,
+                            final LocalDate birthDate, final String email) {
+        User u = new User(login, password, Role.USER, birthDate, email);
         userDao.saveOrUpdate(u);
     }
 
@@ -106,7 +105,7 @@ public class RegisterServlet extends HttpServlet{
         if(userRegistered) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDate date = LocalDate.parse(birthDate, formatter);
-            createUser(login, password, Role.USER, Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()), mail);
+            createUser(login, password, date, mail);
             req.setAttribute("success", "Vous êtes inscrit, bienvenue !");
         }
 

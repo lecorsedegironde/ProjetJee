@@ -18,6 +18,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.dao.UserGameDao;
 import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.persistence.domain.UserGame;
 //import fr.grp404.projetjee.persistence.domain.UserGame;
@@ -27,42 +28,42 @@ import fr.grp404.projetjee.persistence.domain.UserGame;
  */
 @Singleton
 public class UsersGamesListServlet extends HttpServlet {
-	
-	//@Inject
-    //private UserGameDao userGameDao;
-       
+
+    @Inject
+    private UserGameDao userGameDao;
+
     /**
      * @see HttpServlet#HttpServlet()
-     
+
     public CurrentGamesListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    super();
+    // TODO Auto-generated constructor stub
     }*/
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext sc = getServletContext();
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext sc = getServletContext();
         //List<UserGame> usersGames = userGameDao.findAll();
-		List<UserGame> usersGames = Arrays.asList(
-				new UserGame(1, 2, "01/01/18 - 18:00"),
-				new UserGame(2, 3, "01/02/18 - 18:00"),
-				new UserGame(3, 4, "01/03/18 - 18:00")
-		);
+//		List<UserGame> usersGames = Arrays.asList(
+//				new UserGame(1, 2, "01/01/18 - 18:00"),
+//				new UserGame(2, 3, "01/02/18 - 18:00"),
+//				new UserGame(3, 4, "01/03/18 - 18:00")
+//		);
 		/*List<String> usersGames = Arrays.asList(
 				"01/01/18 - 18:00",
 				"01/02/18 - 18:00",
 				"01/03/18 - 18:00"
 		);*/
-		
-		sc.setAttribute("usersGames", usersGames);
-		RequestDispatcher rd = sc.getRequestDispatcher("/usersGamesList.jsp");
+
+//		sc.setAttribute("usersGames", usersGames);
+        RequestDispatcher rd = sc.getRequestDispatcher("/usersGamesList.jsp");
         try {
             rd.forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
-	}
+    }
 
 }

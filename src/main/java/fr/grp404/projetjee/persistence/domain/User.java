@@ -1,39 +1,80 @@
 package fr.grp404.projetjee.persistence.domain;
 
+
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "User")
 public class User {
 
+    /**
+     * Sequence generated Id
+     */
     @Id
     @GeneratedValue
     private Integer id;
 
-    @Basic(optional = false)
+
+    /**
+     * Unique login used to identify user
+     */
+    @NotNull
+    @Size(min = 6, max = 30)
+    @Column(nullable = false, unique = true)
     private String login;
 
+    /**
+     * Password of the user
+     */
     //TODO Chiffrer ?
-    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
     private String password;
 
+    /**
+     * Role of the user
+     */
     @Enumerated(EnumType.STRING)
-    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
     private Role role;
 
-    @Basic(optional = false)
-    @Column(name = "birth_date")
+    /**
+     * Birth Date of the user
+     */
+    @NotNull
+    @Column(name = "birth_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    @Basic(optional = false)
+    /**
+     * User email
+     */
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String email;
 
+    /**
+     * Constructor that do nothing
+     */
     public User() {
-        super();
+        //Do nothing
     }
 
-    public User(String login, String password, Role role, Date birthDate, String email) {
+    /**
+     * Constructor used to create a new user
+     *
+     * @param login     of the user
+     * @param password  of the user
+     * @param role      of the user
+     * @param birthDate of the user
+     * @param email     of the user
+     */
+    public User(@NotNull @Size(min = 6, max = 30) String login, @NotNull String password, @NotNull Role role,
+                @NotNull LocalDate birthDate, @NotNull String email) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -41,50 +82,111 @@ public class User {
         this.email = email;
     }
 
+    /**
+     * Anemic getter
+     *
+     * @return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Anemic setter
+     *
+     * @param id the new id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Anemic getter
+     *
+     * @return the login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Anemic setter
+     *
+     * @param login the new login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * Anemic getter
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Anemic setter
+     *
+     * @param password the new password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Anemic getter
+     *
+     * @return the role
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Anemic setter
+     *
+     * @param role the new role
+     */
     public void setRole(Role role) {
         this.role = role;
     }
 
-    public Date getBirthDate() {
+    /**
+     * Anemic getter
+     *
+     * @return the birth date
+     */
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    /**
+     * Anemic setter
+     *
+     * @param birthDate the new birth date
+     */
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
+
+    /**
+     * Anemic getter
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Anemic setter
+     *
+     * @param email the new email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
