@@ -38,6 +38,11 @@ public class GameDaoMock implements GameDao {
     }
 
     @Override
+    public int findNumberPlayingGame(Game game) {
+        return -1;
+    }
+
+    @Override
     public void deleteGame(Game game) {
         myGames.remove(game);
     }

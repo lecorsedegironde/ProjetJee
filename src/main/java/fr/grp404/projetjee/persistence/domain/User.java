@@ -57,6 +57,12 @@ public class User {
     private String email;
 
     /**
+     * User favorite game
+     */
+    @ManyToOne
+    private Game game;
+
+    /**
      * Constructor that do nothing
      */
     public User() {
@@ -73,12 +79,14 @@ public class User {
      * @param email     of the user
      */
     public User(@NotNull @Size(min = 6, max = 30) final String login, @NotNull final String password,
-                @NotNull final Role role, @NotNull final LocalDate birthDate, @NotNull final String email) {
+                @NotNull final Role role, @NotNull final LocalDate birthDate, @NotNull final String email,
+                final Game game) {
         this.login = login;
         this.password = password;
         this.role = role;
         this.birthDate = birthDate;
         this.email = email;
+        this.game = game;
     }
 
     /**
@@ -188,5 +196,24 @@ public class User {
      */
     public void setEmail(final String email) {
         this.email = email;
+    }
+
+    /**
+     * Anemic getter
+     *
+     * @return the favorite game
+     */
+    public Game getGame() {
+
+        return game;
+    }
+
+    /**
+     * Anemic setter
+     *
+     * @param favoriteGame the new favorite game
+     */
+    public void setGame(final Game favoriteGame) {
+        this.game = favoriteGame;
     }
 }

@@ -25,6 +25,12 @@ public interface GameDao {
     Game findByName(final String name);
 
     /**
+     * @param game the concerned game
+     * @return the number of concurent player playing the game
+     */
+    int findNumberPlayingGame(final Game game);
+
+    /**
      * Delete game
      *
      * @param game to delete

@@ -2,7 +2,9 @@ package fr.grp404.projetjee.persistence.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "UserGame")
@@ -75,6 +77,18 @@ public class UserGame {
         if (getEndDate() == null) {
             setEndDate(LocalDateTime.now());
         }
+    }
+
+    /**
+     * Calculate the time played
+     * @return the time played in seconds between the start date and either the end date if present or the actual date
+     */
+    public long getTimePlayed() {
+        LocalDateTime myEndDate = endDate;
+        if (myEndDate == null) {
+            myEndDate = LocalDateTime.now();
+        }
+        return ChronoUnit.SECONDS.between(startDate, myEndDate);
     }
 
     /**

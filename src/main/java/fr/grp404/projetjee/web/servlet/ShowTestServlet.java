@@ -2,9 +2,13 @@ package fr.grp404.projetjee.web.servlet;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import fr.grp404.projetjee.persistence.dao.GameDao;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.dao.UserGameDao;
+import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.Role;
 import fr.grp404.projetjee.persistence.domain.User;
+import fr.grp404.projetjee.persistence.domain.UserGame;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +26,18 @@ public class ShowTestServlet extends HttpServlet {
     @Inject
     private UserDao userDao;
 
+    @Inject
+    private GameDao gameDao;
+
+    @Inject
+    private UserGameDao userGameDao;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Récupérer la liste des user
         List<User> users = userDao.findAll();
+        List<Game> games = gameDao.findAll();
+        List<UserGame> userGames = userGameDao.findAll();
 
         PrintWriter out = resp.getWriter();
         out.println("<html>");
@@ -35,7 +47,13 @@ public class ShowTestServlet extends HttpServlet {
 
         for (User u : users) {
             String s = "<ul><li>";
-            s += u.getLogin() + "</li><li>" + u.getEmail() + "</li><li>" + u.getRole() + "</li></ul>";
+            s += u.getLogin() + "</li><li>" + u.getEmail() + "</li><li>" + u.getRole() + "</li>";
+            if (u.getGame() != null) {
+                s += "<li>" + u.getGame().getName() + "</li></ul>";
+            } else {
+                s += "</ul>";
+            }
+
             out.println(s);
         }
 
@@ -69,6 +87,22 @@ public class ShowTestServlet extends HttpServlet {
         s += user.getLogin() + "</li></ul>";
         out.println(s);
 
+        out.println("<h1>Liste des jeux</h1>");
+        StringBuilder sb = new StringBuilder("<ul>");
+        for (Game g : games) {
+            sb.append("<li>").append(g.getName()).append(" players: ")
+                    .append(gameDao.findNumberPlayingGame(g)).append("</li>");
+        }
+        sb.append("</ul>");
+        out.println(sb);
+
+        out.println("<h1>Liste des parties</h1>");
+        for (UserGame ug : userGames) {
+            s = "<ul><li>";
+            s += ug.getGame().getName() + "</li><li>" + ug.getUser().getLogin()
+                    + "</li><li>" + ug.getStartDate() + "</li><li>" + ug.getTimePlayed() + "</li></ul>";
+            out.println(s);
+        }
 
 
         out.println("</body></html>");

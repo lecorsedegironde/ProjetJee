@@ -10,10 +10,10 @@ import fr.grp404.projetjee.persistence.domain.User_;
 
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
 
-//TODO
 @Singleton
 public class UserDaoImpl implements UserDao {
 
@@ -32,39 +32,40 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public List<User> findAll() {
-        StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName());
-        return (List<User>) em.get().createQuery(query.toString()).getResultList();
+
+        String query = "from " + User.class.getName();
+        TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class);
+        return userTypedQuery.getResultList();
     }
 
     @Override
     @Transactional
     public List<User> findByRole(final Role role) {
-        StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as User");
-        query.append(" where User.").append(User_.role.getName()).append(" = :role");
 
-        return (List<User>) em.get().createQuery(query.toString()).setParameter("role", role).getResultList();
+        String query = "from " + User.class.getName() + " as User" + " where User." + User_.role.getName() + " = :role";
+        TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class).setParameter("role", role);
+        return userTypedQuery.getResultList();
     }
 
     @Override
     @Transactional
     public List<User> findByBirthDate(final LocalDate date) {
-        StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as User");
-        query.append(" where User.").append(User_.birthDate.getName()).append(" = :date");
 
-        return (List<User>) em.get().createQuery(query.toString()).setParameter("date", date).getResultList();
+        String query = "from " + User.class.getName() + " as User" +
+                " where User." + User_.birthDate.getName() + " = :date";
+        TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class).setParameter("date", date);
+        return userTypedQuery.getResultList();
     }
 
     @Override
     @Transactional
     public User findByEmail(final String email) {
-        StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as User");
-        query.append(" where User.").append(User_.email.getName()).append(" = :email");
 
-        List<User> resultList = em.get().createQuery(query.toString()).setParameter("email", email).getResultList();
+        String query = "from " + User.class.getName() + " as User" +
+                " where User." + User_.email.getName() + " = :email";
+
+        TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class).setParameter("email", email);
+        List<User> resultList = userTypedQuery.getResultList();
 
         if (resultList.size() > 0) {
             return resultList.get(0);
@@ -75,11 +76,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public User findByLogin(final String login) {
-        StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as User");
-        query.append(" where User.").append(User_.login.getName()).append(" = :login");
 
-        List<User> resultList = em.get().createQuery(query.toString()).setParameter("login", login).getResultList();
+        String query = "from " + User.class.getName() + " as User" +
+                " where User." + User_.login.getName() + " = :login";
+
+        TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class).setParameter("login", login);
+        List<User> resultList = userTypedQuery.getResultList();
 
         if (resultList.size() > 0) {
             return resultList.get(0);

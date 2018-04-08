@@ -149,4 +149,15 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <log.root.level>debug</log.root.level>
+            </properties>
+        </profile>
+    </profiles>
 </project>

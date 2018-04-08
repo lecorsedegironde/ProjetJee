@@ -23,7 +23,7 @@
             <!-- Hibernate properties -->
             <property name="hibernate.dialect.storage_engine" value="innodb"/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
 
             <!-- Adresse [3] -->
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jee"/>

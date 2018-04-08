@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet{
 
     private void createUser(final String login, final String password,
                             final LocalDate birthDate, final String email) {
-        User u = new User(login, password, Role.USER, birthDate, email);
+        User u = new User(login, password, Role.USER, birthDate, email, null);
         userDao.saveOrUpdate(u);
     }
 
