@@ -30,7 +30,7 @@ public class Game {
      *
      * @param name of the game
      */
-    public Game(@NotNull String name) {
+    public Game(@NotNull final String name) {
         this.name = name;
     }
 
@@ -48,7 +48,7 @@ public class Game {
      *
      * @param id the new id
      */
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public class Game {
      *
      * @param name the new name
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 }

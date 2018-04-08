@@ -47,7 +47,6 @@ public class User {
      */
     @NotNull
     @Column(name = "birth_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate birthDate;
 
     /**
@@ -73,8 +72,8 @@ public class User {
      * @param birthDate of the user
      * @param email     of the user
      */
-    public User(@NotNull @Size(min = 6, max = 30) String login, @NotNull String password, @NotNull Role role,
-                @NotNull LocalDate birthDate, @NotNull String email) {
+    public User(@NotNull @Size(min = 6, max = 30) final String login, @NotNull final String password,
+                @NotNull final Role role, @NotNull final LocalDate birthDate, @NotNull final String email) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -96,7 +95,7 @@ public class User {
      *
      * @param id the new id
      */
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -114,7 +113,7 @@ public class User {
      *
      * @param login the new login
      */
-    public void setLogin(String login) {
+    public void setLogin(final String login) {
         this.login = login;
     }
 
@@ -132,7 +131,7 @@ public class User {
      *
      * @param password the new password
      */
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -150,7 +149,7 @@ public class User {
      *
      * @param role the new role
      */
-    public void setRole(Role role) {
+    public void setRole(final Role role) {
         this.role = role;
     }
 
@@ -168,7 +167,7 @@ public class User {
      *
      * @param birthDate the new birth date
      */
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(final LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -187,7 +186,7 @@ public class User {
      *
      * @param email the new email
      */
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 }

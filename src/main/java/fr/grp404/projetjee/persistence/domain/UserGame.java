@@ -2,7 +2,7 @@ package fr.grp404.projetjee.persistence.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "UserGame")
@@ -32,15 +32,13 @@ public class UserGame {
      */
     @NotNull
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     /**
      * End date of the game
      */
     @Column(name = "end_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     /**
      * Constructor that do nothing
@@ -55,10 +53,28 @@ public class UserGame {
      * @param user the concerned user
      * @param game the concerned game
      */
-    public UserGame(User user, Game game) {
+    public UserGame(final User user, final Game game) {
         this.user = user;
         this.game = game;
-        this.startDate = LocalDate.now();
+        this.startDate = LocalDateTime.now();
+    }
+
+    /**
+     * Start the current game session only if not already started
+     */
+    public void start() {
+        if (getStartDate() == null) {
+            setStartDate(LocalDateTime.now());
+        }
+    }
+
+    /**
+     * End the current game session only if not already stopped
+     */
+    public void stop() {
+        if (getEndDate() == null) {
+            setEndDate(LocalDateTime.now());
+        }
     }
 
     /**
@@ -75,7 +91,7 @@ public class UserGame {
      *
      * @param id the new id
      */
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -111,7 +127,7 @@ public class UserGame {
      *
      * @param g the new game
      */
-    public void setGame(Game g) {
+    public void setGame(final Game g) {
         this.game = g;
     }
 
@@ -120,7 +136,7 @@ public class UserGame {
      *
      * @return the start date
      */
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
@@ -129,7 +145,7 @@ public class UserGame {
      *
      * @param startDate the new start date
      */
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(final LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
@@ -138,7 +154,7 @@ public class UserGame {
      *
      * @return the end date
      */
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
@@ -147,7 +163,7 @@ public class UserGame {
      *
      * @param endDate the new end date
      */
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(final LocalDateTime endDate) {
         this.endDate = endDate;
     }
 }

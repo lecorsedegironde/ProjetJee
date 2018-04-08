@@ -7,6 +7,7 @@ import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.persistence.domain.UserGame;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class UserGameDaoMock implements UserGameDao {
     }
 
     @Override
-    public List<UserGame> findByStartDate(LocalDate date) {
+    public List<UserGame> findByStartDate(LocalDateTime date) {
         ArrayList<UserGame> myStartDateUserGames = new ArrayList<>();
         for (UserGame u : myUserGames) {
             if (u.getStartDate().isEqual(date)) {
@@ -64,7 +65,7 @@ public class UserGameDaoMock implements UserGameDao {
     }
 
     @Override
-    public List<UserGame> findByEndDate(LocalDate date) {
+    public List<UserGame> findByEndDate(LocalDateTime date) {
         ArrayList<UserGame> myEndDateUserGames = new ArrayList<>();
         for (UserGame u : myUserGames) {
             if (u.getEndDate() != null) {

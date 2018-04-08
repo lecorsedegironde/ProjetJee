@@ -4,7 +4,7 @@ import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.persistence.domain.UserGame;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserGameDao {
@@ -37,13 +37,13 @@ public interface UserGameDao {
      * @param date start date
      * @return all the user game that started at the provided date
      */
-    List<UserGame> findByStartDate(final LocalDate date);
+    List<UserGame> findByStartDate(final LocalDateTime date);
 
     /**
      * @param date end  date
      * @return all the user game that ended at the provided date
      */
-    List<UserGame> findByEndDate(final LocalDate date);
+    List<UserGame> findByEndDate(final LocalDateTime date);
 
     /**
      * Delete user game

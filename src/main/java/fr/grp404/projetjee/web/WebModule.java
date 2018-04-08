@@ -1,5 +1,6 @@
 package fr.grp404.projetjee.web;
 
+import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import fr.grp404.projetjee.web.servlet.*;
@@ -11,7 +12,10 @@ public class WebModule extends ServletModule {
 
     @Override
     protected void configureServlets() {
+        super.configureServlets();
+
         install(new JpaPersistModule("projet-jee"));
+        filter("/*").through(PersistFilter.class);
 
         //Permet d'associer un servlet avec une url de manière simple
         //Exemple : Mon servlet s'appelle TestServlet et répond au chemin /

@@ -42,9 +42,9 @@ public class TestServlet extends HttpServlet {
             LocalDate d1 = LocalDate.of(1996, Month.OCTOBER, 11);
             LocalDate d2 = LocalDate.of(1995, Month.MARCH, 12);
             LocalDate d3 = LocalDate.of(1994, Month.FEBRUARY, 28);
-            createUser("boby", "vsnepassrezpas", Role.ADMIN, d1, "darkprotoxxx@gmail.com");
+            createUser("bobydo", "vsnepassrezpas", Role.ADMIN, d1, "darkprotoxxx@gmail.com");
             createUser("wololo", "ageofemp", Role.USER, d2, "iloveage@gmail.com");
-            createUser("guy", "argentenmasse", Role.USER, d3, "commentgagner@gmail.com");
+            createUser("guygolo", "argentenmasse", Role.USER, d3, "commentgagner@gmail.com");
         }
 
         //Construct redirection context

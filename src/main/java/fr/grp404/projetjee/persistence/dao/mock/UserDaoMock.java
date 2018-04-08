@@ -28,7 +28,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public List<User> findByRole(Role role) {
+    public List<User> findByRole(final Role role) {
         ArrayList<User> myRoleUsers = new ArrayList<>();
         for (User u : myUsers) {
             if (u.getRole().equals(role)) {
@@ -39,7 +39,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public List<User> findByBirthDate(LocalDate date) {
+    public List<User> findByBirthDate(final LocalDate date) {
         ArrayList<User> myDateUsers = new ArrayList<>();
 
         for (User u : myUsers) {
@@ -52,7 +52,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User findByEmail(final String email) {
         for (User u : myUsers) {
             if (u.getEmail().equals(email)) {
                 return u;
@@ -61,7 +61,7 @@ public class UserDaoMock implements UserDao {
         return null;
     }
 
-    public User findByLogin(String login) {
+    public User findByLogin(final String login) {
         for (User u : myUsers) {
             if (u.getLogin().equals(login)) {
                 return u;
