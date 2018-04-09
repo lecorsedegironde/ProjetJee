@@ -1,5 +1,6 @@
 package fr.grp404.projetjee.web.servlet;
 
+import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Singleton
 public class ConnectionServlet extends HttpServlet {
