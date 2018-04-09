@@ -31,7 +31,7 @@ public class MainServlet extends HttpServlet {
 
         if (userDao.findAll().isEmpty()) {
             String password = Hashing.sha256().hashString("admin", StandardCharsets.UTF_8).toString();
-            User u = new User("admin", password, Role.ADMIN, LocalDate.now(), "admin@admin.fr", null);
+            User u = new User("adminUser", password, Role.ADMIN, LocalDate.now(), "admin@admin.fr", null);
             userDao.saveOrUpdate(u);
         }
 
