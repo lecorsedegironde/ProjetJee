@@ -37,6 +37,11 @@ public class ConnectionServlet extends HttpServlet {
         String pass = request.getParameter("password");
         if (pass == null || pass.trim().length() == 0) {
             isLegitUser = false;
+        }else{
+            // hash du mot de passe
+            pass = Hashing.sha256()
+                    .hashString(pass, StandardCharsets.UTF_8)
+                    .toString();
         }
 
         /* Traitement de la requête et récupération du bean en résultant */

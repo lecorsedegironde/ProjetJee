@@ -65,7 +65,9 @@ public class MemberSettingsServlet extends HttpServlet {
         Boolean err = false;
 
         String NewLogin = req.getParameter("login");
-        String OldPassword = req.getParameter("OldPwd");
+        String OldPassword = Hashing.sha256()
+                .hashString(req.getParameter("OldPwd"), StandardCharsets.UTF_8)
+                .toString();
         String NewPassword = req.getParameter("NewPwd");
         String prefGame = req.getParameter("prefGame");
         String email = req.getParameter("mail");
@@ -98,6 +100,9 @@ public class MemberSettingsServlet extends HttpServlet {
         }
 
         if(!err) {
+            NewPassword = Hashing.sha256()
+                    .hashString(NewPassword, StandardCharsets.UTF_8)
+                    .toString();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDate date = LocalDate.parse(birthDate, formatter);
 
@@ -122,6 +127,8 @@ public class MemberSettingsServlet extends HttpServlet {
         }
 
         req.setAttribute("error", error);
+        req.setAttribute("email", user.getEmail());
+        req.setAttribute("birthdate", user.getBirthDate().toString());
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/settings.jsp");
         try {
             rd.forward(req, resp);

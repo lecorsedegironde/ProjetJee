@@ -105,6 +105,9 @@ public class RegisterServlet extends HttpServlet{
         }
 
         if(userRegistered) {
+            password = Hashing.sha256()
+                    .hashString(password, StandardCharsets.UTF_8)
+                    .toString();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDate date = LocalDate.parse(birthDate, formatter);
             createUser(login, password, date, mail);
