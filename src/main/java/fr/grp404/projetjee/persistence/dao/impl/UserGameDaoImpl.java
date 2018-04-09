@@ -8,6 +8,7 @@ import fr.grp404.projetjee.persistence.domain.*;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,10 +53,10 @@ public class UserGameDaoImpl implements UserGameDao {
     @Transactional
     public List<UserGame> findByUser(User user) {
 
-        String query = "from " + UserGame.class.getName() + " as UserGame join UserGame.user u" +
-                " where u = :user";
+        String query = "select ug from UserGame ug join ug.user u where u.id = :user";
+
         TypedQuery<UserGame> userGameTypedQuery = em.get().createQuery(query, UserGame.class)
-                .setParameter("user", user);
+                .setParameter("user", user.getId());
 
         return userGameTypedQuery.getResultList();
     }
