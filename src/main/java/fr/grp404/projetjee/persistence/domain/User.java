@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -59,8 +60,8 @@ public class User {
     /**
      * User favorite game
      */
-    @ManyToOne
-    private Game game;
+    @ManyToMany
+    private List<Game> games;
 
     /**
      * Constructor that do nothing
@@ -77,16 +78,26 @@ public class User {
      * @param role      of the user
      * @param birthDate of the user
      * @param email     of the user
+     * @param games     favorite games of the user
      */
     public User(@NotNull @Size(min = 6, max = 30) final String login, @NotNull final String password,
                 @NotNull final Role role, @NotNull final LocalDate birthDate, @NotNull final String email,
-                final Game game) {
+                final List<Game> games) {
         this.login = login;
         this.password = password;
         this.role = role;
         this.birthDate = birthDate;
         this.email = email;
-        this.game = game;
+        this.games = games;
+    }
+
+    /**
+     * Add a game to user's favorite games
+     *
+     * @param g the game to add
+     */
+    public void addToFavoriteGame(Game g) {
+        games.add(g);
     }
 
     /**
@@ -201,19 +212,19 @@ public class User {
     /**
      * Anemic getter
      *
-     * @return the favorite game
+     * @return the favorite games
      */
-    public Game getGame() {
+    public List<Game> getGames() {
 
-        return game;
+        return games;
     }
 
     /**
      * Anemic setter
      *
-     * @param favoriteGame the new favorite game
+     * @param favoriteGames the new favorite games
      */
-    public void setGame(final Game favoriteGame) {
-        this.game = favoriteGame;
+    public void setGame(final List<Game> favoriteGames) {
+        this.games = favoriteGames;
     }
 }

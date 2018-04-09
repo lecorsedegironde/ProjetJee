@@ -9,11 +9,11 @@ public class Checker {
     private final static String DATE_FORMAT = "yyyy-MM-dd";
 
     public static boolean checkLogin(String login) {
-        return login.length()>5;
+        return login.length() > 5 && login.length() < 30;
     }
 
     public static boolean checkPwd(String pwd) {
-        return pwd.length()>8;
+        return pwd.length() > 8;
     }
 
     public static boolean checkMail(String mail) {

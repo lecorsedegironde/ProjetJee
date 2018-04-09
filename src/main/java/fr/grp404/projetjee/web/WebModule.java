@@ -26,8 +26,5 @@ public class WebModule extends ServletModule {
         serve("/settings").with(MemberSettingsServlet.class);
         serve("/logout").with(LogOutServlet.class);
         serve("/usersgames").with(UsersGamesListServlet.class);
-
-        serve("/test").with(TestServlet.class);
-        serve("/show").with(ShowTestServlet.class);
     }
 }

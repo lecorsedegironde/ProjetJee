@@ -45,19 +45,9 @@ public class UsersGamesListServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext sc = getServletContext();
-        //List<UserGame> usersGames = userGameDao.findAll();
-//		List<UserGame> usersGames = Arrays.asList(
-//				new UserGame(1, 2, "01/01/18 - 18:00"),
-//				new UserGame(2, 3, "01/02/18 - 18:00"),
-//				new UserGame(3, 4, "01/03/18 - 18:00")
-//		);
-		/*List<String> usersGames = Arrays.asList(
-				"01/01/18 - 18:00",
-				"01/02/18 - 18:00",
-				"01/03/18 - 18:00"
-		);*/
+        List<UserGame> usersGames = userGameDao.findAll();
 
-//		sc.setAttribute("usersGames", usersGames);
+		sc.setAttribute("usersGames", usersGames);
         RequestDispatcher rd = sc.getRequestDispatcher("/usersGamesList.jsp");
         try {
             rd.forward(request, response);
