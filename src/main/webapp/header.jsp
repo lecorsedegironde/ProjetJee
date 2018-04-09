@@ -32,7 +32,7 @@
             <li><a href="./signin">Connexion</a></li>
             <li><a href="./signup">Inscription</a></li>
         <% }else{ %>
-            <li><a href="./settings">Member page</a></li>
+            <li><a href="./settings">Paramètres</a></li>
             <li><a href="./logout">Deconnexion</a></li>
         <% } %>
     </ul>

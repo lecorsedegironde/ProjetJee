@@ -64,7 +64,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <input type="email" name="mail" id="mail" placeholder="Email" required>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        <input type="date" name="birthDate" id="birthDate" required>
+                        <input type="date" name="birthDate" id="birthDate" placeholder="yyyy-mm-dd" required>
                     </div>
                     <div class="12u$">
                         <ul class="actions">
