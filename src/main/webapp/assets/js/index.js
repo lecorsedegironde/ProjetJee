@@ -1,0 +1,3 @@
+function hashPwdForm(form) {
+
+}
