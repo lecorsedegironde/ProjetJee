@@ -59,6 +59,13 @@ public class User {
     private String email;
 
     /**
+     * User ban status
+     */
+    @NotNull
+    @Column(nullable = false)
+    private boolean ban;
+
+    /**
      * User favorite game
      */
     @ManyToMany
@@ -89,6 +96,7 @@ public class User {
         this.role = role;
         this.birthDate = birthDate;
         this.email = email;
+        this.ban = false;
         this.games = games;
     }
 
@@ -102,6 +110,20 @@ public class User {
             games = new ArrayList<>();
         }
         games.add(g);
+    }
+
+    /**
+     * Ban user
+     */
+    public void ban() {
+        ban = true;
+    }
+
+    /**
+     * Unban user
+     */
+    public void unBan() {
+        ban = false;
     }
 
     /**
@@ -216,6 +238,24 @@ public class User {
     /**
      * Anemic getter
      *
+     * @return ban status
+     */
+    public boolean isBan() {
+        return ban;
+    }
+
+    /**
+     * Anemic setter
+     *
+     * @param ban new ban status
+     */
+    public void setBan(boolean ban) {
+        this.ban = ban;
+    }
+
+    /**
+     * Anemic getter
+     *
      * @return the favorite games
      */
     public List<Game> getGames() {
@@ -228,7 +268,7 @@ public class User {
      *
      * @param favoriteGames the new favorite games
      */
-    public void setGame(final List<Game> favoriteGames) {
+    public void setGames(final List<Game> favoriteGames) {
         this.games = favoriteGames;
     }
 }

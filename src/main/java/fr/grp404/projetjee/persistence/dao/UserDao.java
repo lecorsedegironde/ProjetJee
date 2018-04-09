@@ -21,6 +21,16 @@ public interface UserDao {
     List<User> findAll();
 
     /**
+     * @return all the banned user
+     */
+    List<User> findAllBanned();
+
+    /**
+     * @return all the banned user
+     */
+    List<User> findAllClear();
+
+    /**
      * @param role the searched role
      * @return all the user of the given role in the database
      */

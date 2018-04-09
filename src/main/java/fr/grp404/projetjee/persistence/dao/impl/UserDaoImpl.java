@@ -12,6 +12,7 @@ import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -36,6 +37,28 @@ public class UserDaoImpl implements UserDao {
         String query = "from " + User.class.getName();
         TypedQuery<User> userTypedQuery = em.get().createQuery(query, User.class);
         return userTypedQuery.getResultList();
+    }
+
+    @Override
+    public List<User> findAllBanned() {
+        List<User> banned = new ArrayList<>();
+        for (User user : findAll()) {
+            if (user.isBan()) {
+                banned.add(user);
+            }
+        }
+        return banned;
+    }
+
+    @Override
+    public List<User> findAllClear() {
+        List<User> banned = new ArrayList<>();
+        for (User user : findAll()) {
+            if (!user.isBan()) {
+                banned.add(user);
+            }
+        }
+        return banned;
     }
 
     @Override

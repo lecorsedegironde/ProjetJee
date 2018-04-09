@@ -62,7 +62,6 @@ public class UserGameDaoImpl implements UserGameDao {
     }
 
     @Override
-    @Transactional
     public UserGame findCurrentByUser(User user) {
         List<UserGame> userGames = findByUser(user);
         for (UserGame g : userGames) {

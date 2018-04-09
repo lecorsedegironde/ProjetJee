@@ -28,6 +28,28 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
+    public List<User> findAllBanned() {
+        List<User> banned = new ArrayList<>();
+        for (User user : findAll()) {
+            if (user.isBan()) {
+                banned.add(user);
+            }
+        }
+        return banned;
+    }
+
+    @Override
+    public List<User> findAllClear() {
+        List<User> banned = new ArrayList<>();
+        for (User user : findAll()) {
+            if (!user.isBan()) {
+                banned.add(user);
+            }
+        }
+        return banned;
+    }
+
+    @Override
     public List<User> findByRole(final Role role) {
         ArrayList<User> myRoleUsers = new ArrayList<>();
         for (User u : myUsers) {
