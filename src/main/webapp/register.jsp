@@ -41,7 +41,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <%=success%>
                 <% } %>
             </p>
-            <form method="post" action="">
+            <form method="post" action="" onsubmit="return hashPwdForm(this)">
                 <div class="row uniform">
                     <div class="6u 12u$(xsmall)">
                         <input name="login" id="login" placeholder="Login" type="text" required>
