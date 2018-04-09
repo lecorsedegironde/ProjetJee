@@ -36,9 +36,13 @@ public class MemberPageServlet extends HttpServlet {
             response.sendRedirect(toRedirect);
         }else{
             User user = userDao.findByLogin(request.getParameter("login"));
+            LocalDate birthDate = user.getBirthDate();
+            String date = birthDate.getDayOfMonth() + " "
+                    + birthDate.getMonth() + " "
+                    + birthDate.getYear();
             request.setAttribute("login", user.getLogin());
             request.setAttribute("email", user.getEmail());
-            request.setAttribute("birthdate", user.getBirthDate().toString());
+            request.setAttribute("birthdate", date);
             request.setAttribute("game", userGameDao.findCurrentByUser(user));
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/member.jsp");

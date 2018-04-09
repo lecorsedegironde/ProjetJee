@@ -35,19 +35,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div id="main">
         <div class="inner">
             <h1>Utilisateur : <%=Ulogin %></h1>
-            <form>
-                <div class="row uniform">
-                    <div class="6u 12u$(xsmall)">
-                        <label>Email : <%=email %></label>
-                    </div>
-                    <div class="6u 12u$(xsmall)">
-                        <label>Né le : <%=birthdate %></label>
-                    </div>
-                    <div class="6u 12u$(xsmall)">
-                        <label>Joue à : <% if(game==null){ %>rien<% }else{ %><%=game %><% } %></label>
-                    </div>
-                </div>
-            </form>
+            <h4>Email : <%=email %></h4>
+            <h4>Né le : <%=birthdate %></h4>
+            <h4>Joue à : <% if(game==null){ %>rien<% }else{ %><%=game %><% } %></h4>
         </div>
     </div>
 
