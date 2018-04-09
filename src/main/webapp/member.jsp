@@ -34,7 +34,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Utilisateur : <%=Ulogin %>%></h1>
+            <h1>Utilisateur : <%=Ulogin %></h1>
             <form>
                 <div class="row uniform">
                     <div class="6u 12u$(xsmall)">
@@ -44,7 +44,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <label>Né le : <%=birthdate %></label>
                     </div>
                     <div class="6u 12u$(xsmall)">
-                        <label>Joue à : <%=game %></label>
+                        <label>Joue à : <% if(game==null){ %>rien<% }else{ %><%=game %><% } %></label>
                     </div>
                 </div>
             </form>
