@@ -1,7 +1,6 @@
 package fr.grp404.projetjee.persistence;
 
 import com.google.inject.AbstractModule;
-import fr.grp404.projetjee.persistence.dao.GameDao;
 import fr.grp404.projetjee.persistence.dao.UserDao;
 import fr.grp404.projetjee.persistence.dao.UserGameDao;
 import fr.grp404.projetjee.persistence.dao.impl.GameDaoImpl;
@@ -14,7 +13,7 @@ public class CoreModule extends AbstractModule {
     protected void configure() {
         //bind les dao sur leurs implémentations
         bind(UserDao.class).to(UserDaoImpl.class);
-        bind(GameDao.class).to(GameDaoImpl.class);
+        bind(fr.grp404.projetjee.persistence.dao.GameDao.class).to(GameDaoImpl.class);
         bind(UserGameDao.class).to(UserGameDaoImpl.class);
     }
 }
