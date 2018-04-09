@@ -23,6 +23,7 @@ public class WebModule extends ServletModule {
         serve("/").with(MainServlet.class);
         serve("/signup").with(RegisterServlet.class);
         serve("/signin").with(ConnectionServlet.class);
+        serve("/settings").with(MemberSettingsServlet.class);
         serve("/logout").with(LogOutServlet.class);
         serve("/usersgames").with(UsersGamesListServlet.class);
 
