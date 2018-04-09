@@ -44,7 +44,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <label>Né le : <%=birthdate %></label>
                     </div>
                     <div class="6u 12u$(xsmall)">
-                        <label>Joue à : <%=email %></label>
+                        <label>Joue à : <%=game %></label>
                     </div>
                 </div>
             </form>
@@ -56,5 +56,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 </div>
 
 <%@include file="scripts.html" %>
+
 </body>
 </html>
