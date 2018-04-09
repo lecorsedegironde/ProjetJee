@@ -61,12 +61,12 @@ public class RegisterServlet extends HttpServlet{
             error += "Le login doit être unique et faire au moins 6 caractères.<br/>";
         }
 
-        if(userDao.findByEmail(mail)==null || !Checker.checkPwd(password)) {
+        if(!Checker.checkPwd(password)) {
             userRegistered = false;
             error += "Le mot de passe doit faire au moins 9 caractères.<br/>";
         }
 
-        if(!Checker.checkMail(mail)) {
+        if(userDao.findByEmail(mail)==null || !Checker.checkMail(mail)) {
             userRegistered = false;
             error += "L'email est incorrect.<br/>";
         }
