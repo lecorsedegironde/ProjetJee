@@ -34,6 +34,12 @@ public interface UserGameDao {
     List<UserGame> findByUser(final User user);
 
     /**
+     * @param user user the concerned user
+     * @return the current game played by the user, null if none exist
+     */
+    UserGame findCurrentByUser(final User user);
+
+    /**
      * @param date start date
      * @return all the user game that started at the provided date
      */

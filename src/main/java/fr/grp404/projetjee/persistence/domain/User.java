@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -97,6 +98,9 @@ public class User {
      * @param g the game to add
      */
     public void addToFavoriteGame(Game g) {
+        if (games == null) {
+            games = new ArrayList<>();
+        }
         games.add(g);
     }
 

@@ -6,7 +6,6 @@ import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.persistence.domain.UserGame;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +50,17 @@ public class UserGameDaoMock implements UserGameDao {
             }
         }
         return myUserUserGames;
+    }
+
+    @Override
+    public UserGame findCurrentByUser(User user) {
+        List<UserGame> byUser = findByUser(user);
+        for (UserGame g : byUser) {
+            if (g.getEndDate() == null) {
+                return g;
+            }
+        }
+        return null;
     }
 
     @Override
