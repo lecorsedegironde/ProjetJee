@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.lang.*" %>
 <%
-    String login = (String) request.getAttribute("login");
+    String Ulogin = (String) request.getAttribute("login");
     String email = (String) request.getAttribute("email");
     String birthdate = (String) request.getAttribute("birthdate");
     String game = (String) request.getAttribute("game");
@@ -34,7 +34,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Utilisateur : <%=login %>%></h1>
+            <h1>Utilisateur : <%=Ulogin %>%></h1>
             <form>
                 <div class="row uniform">
                     <div class="6u 12u$(xsmall)">
