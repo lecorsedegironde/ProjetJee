@@ -68,11 +68,18 @@ public class ConnectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/connection.jsp");
-        try {
-            rd.forward(request, response);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
+        HttpSession session = request.getSession();
+
+        if(session.getAttribute("login")==null){
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/connection.jsp");
+            try {
+                rd.forward(request, response);
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            String toRedirect = getServletContext().getContextPath() + "/";
+            response.sendRedirect(toRedirect);
         }
     }
 }

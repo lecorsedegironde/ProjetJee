@@ -30,15 +30,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div id="main">
         <div class="inner">
             <section class="connexion">
-                    <% if(login!=null){%>
-                    <%if(admin!=null){%>
-                <p>Vous etes l'admministrateur <%= login%>
-                </p>
-                    <%} else { %>
-                <p>Vous etes <%= login%>
-                </p>
-                    <%}%>
-                    <%}%>
                     <% if(erreur!=null){%>
                 <p>Le login et le mot de passe saisie sont incorrect</p>
                     <%}%>
