@@ -49,7 +49,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                     <div class="6u$ 12u$(xsmall)">
                         <input name="pwd" id="pwd" placeholder="Password" type="password" required>
                     </div>
-                    <div class="12u$">
+                    <div class="6u$ 12u$(xsmall)">
                         <div class="select-wrapper">
                             <select name="prefGame" id="prefGame">
                                 <option value="0">- Jeu préféré -</option>

@@ -48,14 +48,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                     <div class="6u 12u$(xsmall)">
                         <input name="login" id="login" placeholder="Login" type="text" value="<%=login %>" required>
                     </div>
-                    <br/>
                     <div class="6u$ 12u$(xsmall)">
                         <input name="OldPwd" id="OldPwd" placeholder="Old password" type="password" required>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
                         <input name="NewPwd" id="NewPwd" placeholder="New password" type="password" required>
                     </div>
-                    <div class="12u$">
+                    <div class="6u$ 12u$(xsmall)">
                         <div class="select-wrapper">
                             <select name="prefGame" id="prefGame">
                                 <option value="0">- Jeu préféré -</option>
@@ -74,7 +73,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                     </div>
                     <div class="12u$">
                         <ul class="actions">
-                            <li><input class="special" value="Inscription" type="submit"></li>
+                            <li><input class="special" value="Mettre à jour" type="submit"></li>
                         </ul>
                     </div>
                 </div>
