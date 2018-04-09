@@ -3,10 +3,7 @@ package fr.grp404.projetjee.persistence.dao.impl;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 import fr.grp404.projetjee.persistence.dao.UserGameDao;
-import fr.grp404.projetjee.persistence.domain.Game;
-import fr.grp404.projetjee.persistence.domain.User;
-import fr.grp404.projetjee.persistence.domain.UserGame;
-import fr.grp404.projetjee.persistence.domain.UserGame_;
+import fr.grp404.projetjee.persistence.domain.*;
 
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
@@ -42,7 +39,7 @@ public class UserGameDaoImpl implements UserGameDao {
     @Transactional
     public List<UserGame> findByGame(Game game) {
 
-        String query = "from " + User.class.getName() + " as UserGame" +
+        String query = "from " + UserGame.class.getName() + " as UserGame" +
                 " where UserGame." + UserGame_.game.getName() + " = :game";
 
         TypedQuery<UserGame> userGameTypedQuery = em.get().createQuery(query, UserGame.class)
@@ -55,8 +52,8 @@ public class UserGameDaoImpl implements UserGameDao {
     @Transactional
     public List<UserGame> findByUser(User user) {
 
-        String query = "from " + User.class.getName() + " as UserGame" +
-                " where UserGame." + UserGame_.user.getName() + " = :user";
+        String query = "from " + UserGame.class.getName() + " as UserGame join UserGame.user u" +
+                " where u = :user";
         TypedQuery<UserGame> userGameTypedQuery = em.get().createQuery(query, UserGame.class)
                 .setParameter("user", user);
 
