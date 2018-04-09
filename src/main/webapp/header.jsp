@@ -31,7 +31,10 @@
         <% if (login == null) { %>
             <li><a href="./signin">Connexion</a></li>
             <li><a href="./signup">Inscription</a></li>
-        <% }else{ %>
+        <% }else{
+            if(admin){ %>
+            <li><a href="./jeux">Liste des jeux</a></li>
+            <% } %>
             <li><a href="./settings">Paramètres</a></li>
             <li><a href="./logout">Deconnexion</a></li>
         <% } %>
