@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.lang.*" %>
+<%
+    String login = (String) session.getAttribute("login");
+    Boolean admin = (Boolean) session.getAttribute("admin");
+%>
 <!-- Header -->
 <header id="header">
     <div class="inner">
@@ -22,8 +28,11 @@
     <h2>Menu</h2>
     <ul>
         <li><a href="./">Home</a></li>
-        <li><a href="./signin">Connexion</a></li>
-        <li><a href="./signup">Inscription</a></li>
-        <li><a href="./logout">Deconnexion</a></li>
+        <% if (login == null) { %>
+            <li><a href="./signin">Connexion</a></li>
+            <li><a href="./signup">Inscription</a></li>
+        <% }else{ %>
+            <li><a href="./logout">Deconnexion</a></li>
+        <% } %>
     </ul>
 </nav>

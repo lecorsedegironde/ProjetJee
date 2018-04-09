@@ -13,7 +13,7 @@ import java.io.IOException;
 @Singleton
 public class LogOutServlet extends HttpServlet {
 
-    private final String redirect = "/signin";
+    private final String redirect = "/";
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,5 +1,3 @@
-<%String login = (String) session.getAttribute("login");%>
-<%Boolean admin = (Boolean) session.getAttribute("admin");%>
 <%Integer erreur = (Integer) request.getAttribute("erreur");%>
 <!DOCTYPE HTML>
 <!--
@@ -24,7 +22,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <!-- Wrapper -->
 <div id="wrapper">
 
-    <%@include file="header.html" %>
+    <%@include file="header.jsp" %>
 
     <!-- Main -->
     <div id="main">
