@@ -42,8 +42,7 @@ public class RegisterServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Game> games = gameDao.findAll();
-        req.setAttribute("games", games);
+        req.setAttribute("games", gameDao.findAll());
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         try {
             rd.forward(req, resp);

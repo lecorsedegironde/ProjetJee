@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.lang.*" %>
+<%@ page import="fr.grp404.projetjee.persistence.domain.Game" %>
+<%@ page import="java.util.List" %>
 <%
     String email = (String) request.getAttribute("email");
+    List<Game> games = (List<Game>) request.getAttribute("games");
+    List<Game> prefGames = (List<Game>) request.getAttribute("prefGames");
     String birthdate = (String) request.getAttribute("birthdate");
     String error = (String) request.getAttribute("error");
     String success = (String) request.getAttribute("success");
@@ -54,16 +58,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                     <div class="6u$ 12u$(xsmall)">
                         <input name="NewPwd" id="NewPwd" placeholder="New password" type="password" required>
                     </div>
-                    <div class="6u$ 12u$(xsmall)">
-                        <div class="select-wrapper">
-                            <select name="prefGame" id="prefGame">
-                                <option value="0">- Jeu préféré -</option>
-                                <option value="1">Tetris</option>
-                                <option value="2">Mario</option>
-                                <option value="3">Rayman</option>
-                                <option value="4">J'en ai pas</option>
-                            </select>
-                        </div>
+                    <div class="6u 12u$(small)">
+                        <label>Jeux préférés</label><br>
+                        <%
+                            int i = 0;
+                            for (Game game:games) {
+                        %>
+                        <input id="prefGame<%=i %>" name="prefGame" value="<%=game.getName() %>" type="checkbox" <% if(prefGames.contains(game)){ %> checked <% } %>>
+                        <label for="prefGame<%=i %>"><%=game.getName() %></label>
+                        <%
+                                i++;
+                            }
+                        %>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
                         <input type="email" name="mail" id="mail" placeholder="Email" value="<%=email %>" required>

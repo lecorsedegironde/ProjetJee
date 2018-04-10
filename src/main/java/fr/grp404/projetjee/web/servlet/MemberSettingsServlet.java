@@ -3,7 +3,9 @@ package fr.grp404.projetjee.web.servlet;
 import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import fr.grp404.projetjee.persistence.dao.GameDao;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.web.Checker;
 
@@ -17,15 +19,19 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Singleton
 public class MemberSettingsServlet extends HttpServlet {
 
     private final static String DATE_FORMAT = "yyyy-MM-dd";
+
     @Inject
     private UserDao userDao;
-
+    @Inject
+    private GameDao gameDao;
 
     private final String redirect = "/signin";
 
@@ -40,7 +46,7 @@ public class MemberSettingsServlet extends HttpServlet {
                 .hashString(req.getParameter("OldPwd"), StandardCharsets.UTF_8)
                 .toString();
         String NewPassword = req.getParameter("NewPwd");
-        String prefGame = req.getParameter("prefGame");
+        String[] prefGame = req.getParameterValues("prefGame");
         String email = req.getParameter("mail");
         String birthDate = req.getParameter("birthDate");
         String error = "";
@@ -71,6 +77,15 @@ public class MemberSettingsServlet extends HttpServlet {
         }
 
         if(!err) {
+            // create prefGame list for the user
+            List<Game> games= new ArrayList<>();
+            if(games.isEmpty()) games = null;
+            else{
+                for (String gameName:prefGame) {
+                    games.add(gameDao.findByName(gameName));
+                }
+            }
+            // hash the password
             NewPassword = Hashing.sha256()
                     .hashString(NewPassword, StandardCharsets.UTF_8)
                     .toString();
@@ -93,12 +108,18 @@ public class MemberSettingsServlet extends HttpServlet {
                 user.setBirthDate(date);
             }
 
+            if(!Objects.equals(games, user.getGames())){
+                user.setGames(games);
+            }
+
             userDao.saveOrUpdate(user);
             req.setAttribute("success", "Vos informations ont bien été mises à jour !");
         }
 
         req.setAttribute("error", error);
         req.setAttribute("email", user.getEmail());
+        req.setAttribute("games", gameDao.findAll());
+        req.setAttribute("prefGames", user.getGames());
         req.setAttribute("birthdate", user.getBirthDate().toString());
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/settings.jsp");
         try {
@@ -117,6 +138,8 @@ public class MemberSettingsServlet extends HttpServlet {
         }else{
             User user = userDao.findByLogin(session.getAttribute("login").toString());
             request.setAttribute("email", user.getEmail());
+            request.setAttribute("games", gameDao.findAll());
+            request.setAttribute("prefGames", user.getGames());
             request.setAttribute("birthdate", user.getBirthDate().toString());
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/settings.jsp");
