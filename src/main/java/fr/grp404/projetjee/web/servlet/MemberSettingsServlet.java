@@ -109,7 +109,7 @@ public class MemberSettingsServlet extends HttpServlet {
                 user.setBirthDate(date);
             }
 
-            if(!Objects.equals(games, user.getGames())){
+            if(games==null || !Objects.equals(games, user.getGames())){
                 user.setGames(games);
             }
 
