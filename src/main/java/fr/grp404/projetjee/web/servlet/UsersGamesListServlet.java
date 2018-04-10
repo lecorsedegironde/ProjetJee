@@ -44,7 +44,7 @@ public class UsersGamesListServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (gameDao.findByName("Luigi") == null) {
+        /*if (gameDao.findByName("Luigi") == null) {
             Game g1 = new Game("Luigi");
             gameDao.saveOrUpdate(g1);
             Game g2 = new Game("Sonic");
@@ -62,7 +62,7 @@ public class UsersGamesListServlet extends HttpServlet {
             userGameDao.saveOrUpdate(userGame);
             userGame = new UserGame(u, g3);
             userGameDao.saveOrUpdate(userGame);
-        }
+        }*/
 
         ServletContext sc = getServletContext();
         List<UserGame> allUsersGames = userGameDao.findAll();

@@ -49,6 +49,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 </c:if>
                             </form>
                             <td><a href="./signup" method="post" type="submit" name="login" value="test">${user.login}</a></td>
+                            <td>
+                            <form id="formulaire_cache" action="./signup" method="post" style="display:none;">
+                                <p>
+                                    <input name="pseudo" value="CestMoi"/>
+                                </p>
+                            </form>
+                            </td>
                             <td>${user.birthDate.dayOfMonth}/${user.birthDate.monthValue}/${user.birthDate.year}</td>
                         </tr>
                     </c:forEach>

@@ -39,7 +39,7 @@ public class UsersListServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (userDao.findByLogin("usertest1") == null) {
+        /*if (userDao.findByLogin("usertest1") == null) {
 
             String password = Hashing.sha256().hashString("user1", StandardCharsets.UTF_8).toString();
             User u = new User("usertest1", password, Role.USER, LocalDate.now(), "user1@admin.fr", null);
@@ -50,7 +50,7 @@ public class UsersListServlet extends HttpServlet {
             password = Hashing.sha256().hashString("user3", StandardCharsets.UTF_8).toString();
             u = new User("usertest3", password, Role.USER, LocalDate.now(), "user3@admin.fr", null);
             userDao.saveOrUpdate(u);
-        }
+        }*/
 
         ServletContext sc = getServletContext();
         List<User> users = userDao.findAll();
