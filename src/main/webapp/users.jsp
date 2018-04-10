@@ -36,7 +36,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <th>Bouton d'action</th>
                         <th>Pseudo</th>
                         <th>Date d’inscription</th>
-                        <th>Nombre de parties jouées</th>
+                        <!--<th>Nombre de parties jouées</th>-->
                     </tr>
                     <c:forEach var="user" items="${users}">
                         <tr>
@@ -48,14 +48,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                     <td><button type="submit" name="unban" value="${user.id}"/>Autoriser le joueur</button></td>
                                 </c:if>
                             </form>
-                            <td><a href="./signup" method="post" type="submit" name="login" value="test">${user.login}</a></td>
-                            <td>
-                            <form id="formulaire_cache" action="./signup" method="post" style="display:none;">
-                                <p>
-                                    <input name="pseudo" value="CestMoi"/>
-                                </p>
-                            </form>
-                            </td>
+                            <td>${user.login}</td>
                             <td>${user.birthDate.dayOfMonth}/${user.birthDate.monthValue}/${user.birthDate.year}</td>
                         </tr>
                     </c:forEach>
