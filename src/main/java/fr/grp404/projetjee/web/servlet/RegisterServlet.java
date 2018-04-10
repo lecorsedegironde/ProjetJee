@@ -86,12 +86,13 @@ public class RegisterServlet extends HttpServlet{
 
         if(userRegistered) {
             // create prefGame list for the user
-            List<Game> games= new ArrayList<>();
-            if(games.isEmpty()) games = null;
-            else{
+            List<Game> games = new ArrayList<>();
+            if(prefGame!=null) {
                 for (String gameName:prefGame) {
                     games.add(gameDao.findByName(gameName));
                 }
+            }else{
+                games = null;
             }
             // hash the password
             password = Hashing.sha256()

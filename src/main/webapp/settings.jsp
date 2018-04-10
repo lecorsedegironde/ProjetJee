@@ -64,7 +64,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             int i = 0;
                             for (Game game:games) {
                         %>
-                        <input id="prefGame<%=i %>" name="prefGame" value="<%=game.getName() %>" type="checkbox" <% if(prefGames.contains(game)){ %> checked <% } %>>
+                        <input id="prefGame<%=i %>" name="prefGame" value="<%=game.getName() %>" type="checkbox" <% if(prefGames.contains(game)){ %> <%="checked" %> <% } %>>
                         <label for="prefGame<%=i %>"><%=game.getName() %></label>
                         <%
                                 i++;

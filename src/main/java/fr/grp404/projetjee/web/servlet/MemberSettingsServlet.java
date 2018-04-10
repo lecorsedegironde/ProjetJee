@@ -79,11 +79,12 @@ public class MemberSettingsServlet extends HttpServlet {
         if(!err) {
             // create prefGame list for the user
             List<Game> games= new ArrayList<>();
-            if(games.isEmpty()) games = null;
-            else{
+            if(prefGame!=null){
                 for (String gameName:prefGame) {
                     games.add(gameDao.findByName(gameName));
                 }
+            }else{
+                games = null;
             }
             // hash the password
             NewPassword = Hashing.sha256()
