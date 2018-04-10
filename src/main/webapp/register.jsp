@@ -53,11 +53,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <input name="pwd" id="pwd" placeholder="Mot de passe" type="password" required>
                     </div>
                     <div class="6u 12u$(small)">
+                        <label>Jeux préférés</label><br>
                         <%
                             int i = 0;
                             for (Game game:games) {
                         %>
-                        <input id="prefGame<%=i %>" name="prefGame[]" type="checkbox">
+                        <input id="prefGame<%=i %>" name="prefGame" value="<%=game.getName() %>" type="checkbox">
                         <label for="prefGame<%=i %>"><%=game.getName() %></label>
                         <%
                                 i++;

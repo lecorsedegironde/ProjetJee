@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -32,8 +33,9 @@ public class RegisterServlet extends HttpServlet{
     private GameDao gameDao;
 
     private void createUser(final String login, final String password,
-                            final LocalDate birthDate, final String email) {
-        User u = new User(login, password, Role.USER, birthDate, email, null);
+                            final LocalDate birthDate, final String email,
+                            final List<Game> games) {
+        User u = new User(login, password, Role.USER, birthDate, email, games);
         userDao.saveOrUpdate(u);
     }
 
@@ -58,12 +60,12 @@ public class RegisterServlet extends HttpServlet{
 
         String login = req.getParameter("login");
         String password = req.getParameter("pwd");
-        String prefGame = req.getParameter("prefGame");
+        String[] prefGame = req.getParameterValues("prefGame");
         String mail = req.getParameter("mail");
         String birthDate = req.getParameter("birthDate");
         String error = "";
 
-        if(userDao.findByLogin(login)==null || !Checker.checkLogin(login)) {
+        if(userDao.findByLogin(login)!=null || !Checker.checkLogin(login)) {
             userRegistered = false;
             error += "Le login doit être unique et faire au moins 6 caractères.<br/>";
         }
@@ -73,7 +75,7 @@ public class RegisterServlet extends HttpServlet{
             error += "Le mot de passe doit faire au moins 9 caractères.<br/>";
         }
 
-        if(userDao.findByEmail(mail)==null || !Checker.checkMail(mail)) {
+        if(userDao.findByEmail(mail)!=null || !Checker.checkMail(mail)) {
             userRegistered = false;
             error += "L'email est incorrect.<br/>";
         }
@@ -84,15 +86,27 @@ public class RegisterServlet extends HttpServlet{
         }
 
         if(userRegistered) {
+            // create prefGame list for the user
+            List<Game> games= new ArrayList<>();
+            if(games.isEmpty()) games = null;
+            else{
+                for (String gameName:prefGame) {
+                    games.add(gameDao.findByName(gameName));
+                }
+            }
+            // hash the password
             password = Hashing.sha256()
                     .hashString(password, StandardCharsets.UTF_8)
                     .toString();
+            // format the date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDate date = LocalDate.parse(birthDate, formatter);
-            createUser(login, password, date, mail);
+            // create the user
+            createUser(login, password, date, mail, games);
             req.setAttribute("success", "Vous êtes inscrit, bienvenue !");
         }
 
+        req.setAttribute("games", gameDao.findAll());
         req.setAttribute("error", error);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         try {
