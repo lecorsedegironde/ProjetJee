@@ -67,7 +67,7 @@ public class ConnectionServlet extends HttpServlet {
             if (u.getRole() == Role.ADMIN) {
                 session.setAttribute("admin", true);
             } else {
-                session.removeAttribute("admin");
+                session.setAttribute("admin", false);
             }
 
             doGet(request, response);
