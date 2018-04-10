@@ -5,6 +5,7 @@ Le repo projetJee du groupe 404
 - Damien Hamoudi
 - Mickaël de Azévédo
 - Ewen Baron
+- Bastien Hoffstetter
 ## Création de la base de données
 Avant de lancer l'application, exécuter ce code sur la base de données MySql
 
