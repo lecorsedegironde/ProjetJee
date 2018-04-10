@@ -14,21 +14,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.time.Month;
+import java.util.HashMap;
+import java.util.List;
 
 @Singleton
 public class MainServlet extends HttpServlet {
 
     /**
      * User dao used to create admin user
-     * Game dao used to create some games
      */
     @Inject
     private UserDao userDao;
+
+    /**
+     * Game dao used to create some games
+     */
     @Inject
     private GameDao gameDao;
 
@@ -38,12 +41,30 @@ public class MainServlet extends HttpServlet {
             String password = Hashing.sha256().hashString("admin", StandardCharsets.UTF_8).toString();
             User u = new User("adminUser", password, Role.ADMIN, LocalDate.now(), "admin@admin.fr", null);
             userDao.saveOrUpdate(u);
+            String password2 = Hashing.sha256().hashString("user", StandardCharsets.UTF_8).toString();
+            User u2 = new User("userTest", password2, Role.USER, LocalDate.now(), "user@admin.fr", null);
+            userDao.saveOrUpdate(u2);
         }
 
         if (gameDao.findAll().isEmpty()) {
-            Game game = new Game("Tetris");
-            gameDao.saveOrUpdate(game);
+            Game g1 = new Game("Mario");
+            gameDao.saveOrUpdate(g1);
+            Game g2 = new Game("Sonic");
+            gameDao.saveOrUpdate(g2);
+            Game g3 = new Game("Pong");
+            gameDao.saveOrUpdate(g3);
+            Game g4 = new Game("Tetris");
+            gameDao.saveOrUpdate(g4);
         }
+
+        List<Game> games = gameDao.findAll();
+        request.setAttribute("games", games);
+        HashMap<String, Integer> gamePlayers = new HashMap<>();
+        for (Game g : games) {
+            gamePlayers.put(g.getName(), gameDao.findNumberPlayingGame(g));
+        }
+
+        request.setAttribute("gamePlayers", gamePlayers);
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
         try {

@@ -3,12 +3,14 @@ package fr.grp404.projetjee.persistence.dao.impl;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 import fr.grp404.projetjee.persistence.dao.UserGameDao;
-import fr.grp404.projetjee.persistence.domain.*;
+import fr.grp404.projetjee.persistence.domain.Game;
+import fr.grp404.projetjee.persistence.domain.User;
+import fr.grp404.projetjee.persistence.domain.UserGame;
+import fr.grp404.projetjee.persistence.domain.UserGame_;
 
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaQuery;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,6 +25,11 @@ public class UserGameDaoImpl implements UserGameDao {
     @Override
     @Transactional
     public void saveOrUpdate(UserGame userGame) {
+        UserGame ug = findCurrentByUser(userGame.getUser());
+        if (ug != null) {
+            ug.stop();
+            this.em.get().persist(ug);
+        }
         this.em.get().persist(userGame);
     }
 

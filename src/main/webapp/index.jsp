@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:useBean id="random" class="java.util.Random" scope="application"/>
 <!DOCTYPE HTML>
 <!--
 Phantom by HTML5 UP
@@ -7,7 +9,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Jouez à jeux !</title>
+    <title>Jouez à des jeux !</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -29,142 +31,27 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="inner">
             <header>
                 <h1>Bienvenue sur le site du groupe 404 !</h1>
-                <p>Nous mettons de super jeux à dispositions pour tous types d'écrans ! Le groupe 404 vous offre le meilleur des jeux en ligne et les catégories les plus populaires telles que les 
-			jeux de cuisine, les jeux de foot et les jeux d'habillage, ainsi que les jeux inspirés de vos films.</p>
+                <p>Nous mettons de super jeux à dispositions pour tous types d'écrans ! Le groupe 404 vous offre le
+                    meilleur des jeux en ligne et les catégories les plus populaires telles que les
+                    jeux de cuisine, les jeux de foot et les jeux d'habillage, ainsi que les jeux inspirés de vos
+                    films.</p>
+                <p>Connectez-vous en cliquant sur l'un des jeux</p>
             </header>
             <section class="tiles">
-                <article class="style1">
+                <c:forEach var="game" items="${games}">
+                    <c:set var="number" scope="session" value="${random.nextInt(10)}"/>
+                    <article class="style${number}">
 									<span class="image">
-										<img src="images/pic01.jpg" alt=""/>
+										<img src="images/pic0${number}.jpg" alt="jeu"/>
 									</span>
-                    <!--<a href="generic.html">-->
-                    <h2>Magna</h2>
-                    <div class="content">
-                        <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                    </div>
-                    </a>
-                </article>
-                <article class="style2">
-									<span class="image">
-										<img src="images/pic02.jpg" alt=""/>
-									</span>
-                    <!--<a href="generic.html">-->
-                    <h2>Lorem</h2>
-                    <div class="content">
-                        <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                    </div>
-                    </a>
-                </article>
-                <article class="style3">
-									<span class="image">
-										<img src="images/pic03.jpg" alt=""/>
-									</span>
-                    <!--<a href="generic.html">-->
-                    <h2>Feugiat</h2>
-                    <div class="content">
-                        <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                    </div>
-                    </a>
-                </article>
-                <article class="style4">
-									<span class="image">
-										<img src="images/pic04.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Tempus</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style5">
-									<span class="image">
-										<img src="images/pic05.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Aliquam</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style6">
-									<span class="image">
-										<img src="images/pic06.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Veroeros</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style2">
-									<span class="image">
-										<img src="images/pic07.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Ipsum</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style3">
-									<span class="image">
-										<img src="images/pic08.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Dolor</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style1">
-									<span class="image">
-										<img src="images/pic09.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Nullam</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style5">
-									<span class="image">
-										<img src="images/pic10.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Ultricies</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style6">
-									<span class="image">
-										<img src="images/pic11.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Dictum</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="style4">
-									<span class="image">
-										<img src="images/pic12.jpg" alt=""/>
-									</span>
-                    <a href="generic.html">
-                        <h2>Pretium</h2>
-                        <div class="content">
-                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-                        </div>
-                    </a>
-                </article>
+                        <a href="./connection.jsp">
+                            <h2>${game.name}</h2>
+                            <div class="content">
+                                <p>${game.name} avec ${gamePlayers[game.name]} utilisateur(s) en ligne&nbsp;!</p>
+                            </div>
+                        </a>
+                    </article>
+                </c:forEach>
             </section>
         </div>
     </div>

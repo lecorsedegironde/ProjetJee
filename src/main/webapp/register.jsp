@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.*" %>
 <%@ page import="fr.grp404.projetjee.persistence.domain.Game" %>
 <%@ page import="java.util.List" %>
 <%
@@ -37,12 +36,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="inner">
             <h1>Inscription</h1>
             <p>
-                <% if (error != null) { %>
-                <%=error%>
-                <% }
+                    <% if (error != null) { %>
+                    <%=error%>
+                    <% }
                     if (success != null) { %>
-                <%=success%>
-                <% } %>
+                    <%=success%>
+            <form action="./connection.jsp" method="get">
+                <button type="submit">Se connecter</button>
+            </form>
+            <% } %>
             </p>
             <form method="post" action="">
                 <div class="row uniform">
@@ -56,10 +58,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <label>Jeux préférés</label><br>
                         <%
                             int i = 0;
-                            for (Game game:games) {
+                            for (Game game : games) {
                         %>
                         <input id="prefGame<%=i %>" name="prefGame" value="<%=game.getName() %>" type="checkbox">
-                        <label for="prefGame<%=i %>"><%=game.getName() %></label>
+                        <label for="prefGame<%=i %>"><%=game.getName() %>
+                        </label>
                         <%
                                 i++;
                             }

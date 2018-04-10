@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.*" %>
 <%Integer erreur = (Integer) request.getAttribute("erreur");%>
 
 <!DOCTYPE HTML>
@@ -32,25 +31,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div id="main">
         <div class="inner">
             <h1>Choix du jeu</h1>
-            <% if(erreur!=null){%>
-                <p>Veuilliez selectionnez un jeu</p>
+            <% if (erreur != null) {%>
+            <p>Veuilliez selectionnez un jeu</p>
             <%}%>
             <form action="./playgame" method="post">
-                <p>
-                    <div class="select-wrapper">
-                        <select name="menu_destination">
-                            <option value="">- Jeux -</option>
-                            <c:forEach var="game" items="${listGames}">
-                                <!--<div class="6u 12u$(xsmall)">-->
-                                    <option value="${game.name}">${game.name} : ${gamePlayers[game.name]} joueurs connectés</option>
-                                <!--</div>-->
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <br/>
-                    <ul class="actions">
-                        <li><input type="submit" value="Start" title= "Valider pour aller au jeu sélectionné" /></li>
-                    </ul>
+                <div class="12  u 12u$(xsmall)">
+                    <p>
+                        <c:forEach var="game" items="${listGames}">
+                        <input id="game${game.name}" name="game" value="${game.name}" type="radio" checked>
+                        <label for="game${game.name}">${game.name} : ${gamePlayers[game.name]} joueurs connectés</label>
+                        <br>
+                        </c:forEach>
+                </div>
+                <br/>
+                <ul class="actions">
+                    <li><input type="submit" value="Start" title="Valider pour aller au jeu sélectionné"/></li>
+                </ul>
                 </p>
             </form>
         </div>

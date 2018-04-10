@@ -1,4 +1,4 @@
-<%Integer erreur = (Integer) request.getAttribute("erreur");%>
+<%String erreur = (String) request.getAttribute("erreur");%>
 <!DOCTYPE HTML>
 <!--
 Phantom by HTML5 UP
@@ -15,7 +15,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <link rel="stylesheet" href="assets/css/main.css"/>
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
-    <!--[if lte IE 8]>
+    <!--[if lte IE 8projet-jee/signin]>
     <link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
 </head>
 <body>
@@ -29,7 +29,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="inner">
             <section class="connexion">
                     <% if(erreur!=null){%>
-                <p>Le login et le mot de passe saisie sont incorrect</p>
+                <p><%=erreur%>
+                </p>
                     <%}%>
                 <form action="./signin" method="post">
                     <div class="6u 12u$(xsmall)">

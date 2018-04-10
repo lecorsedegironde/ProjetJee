@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Singleton
 public class PlayGameServlet extends HttpServlet {
@@ -38,19 +37,18 @@ public class PlayGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        String gameName = request.getParameter("menu_destination");
-        if(gameName.compareTo("")!=0) {
-            session.setAttribute("gameName",gameName);
-            User user = userDao.findByLogin((String)session.getAttribute("login"));
+        String gameName = request.getParameter("game");
+        if (gameName.compareTo("") != 0) {
+            session.setAttribute("gameName", gameName);
+            User user = userDao.findByLogin((String) session.getAttribute("login"));
             Game game = gameDao.findByName(gameName);
-            UserGame userGame = new UserGame(user,game);
+            UserGame userGame = new UserGame(user, game);
             userGameDao.saveOrUpdate(userGame);
 
             request.setAttribute("gameName", gameName);
             doGet(request, response);
-        }
-        else{
-            request.setAttribute("erreur",0);
+        } else {
+            request.setAttribute("erreur", 0);
             String toRedirect = getServletContext().getContextPath() + redirectGameErreur;
             response.sendRedirect(toRedirect);
         }
@@ -59,15 +57,14 @@ public class PlayGameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if(session.getAttribute("login")!= null){
+        if (session.getAttribute("login") != null) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/playGame.jsp");
             try {
                 rd.forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             String toRedirect = getServletContext().getContextPath() + redirectIndex;
             response.sendRedirect(toRedirect);
         }

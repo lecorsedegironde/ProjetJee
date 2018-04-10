@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.*" %>
 <%
     String Ulogin = (String) request.getAttribute("login");
     String email = (String) request.getAttribute("email");
@@ -14,7 +13,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Generic - Phantom by HTML5 UP</title>
+    <title>Page de <%=Ulogin %>
+    </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -34,10 +34,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Utilisateur : <%=Ulogin %></h1>
-            <h4>Email : <%=email %></h4>
-            <h4>Né le : <%=birthdate %></h4>
-            <h4>Joue à : <% if(game==null){ %>rien<% }else{ %><%=game %><% } %></h4>
+            <h1>Utilisateur : <%=Ulogin %>
+            </h1>
+            <h4>Email : <%=email %>
+            </h4>
+            <h4>Né le : <%=birthdate %>
+            </h4>
+            <h4>Joue à : <% if (game == null) { %>rien<% } else { %><%=game %><% } %></h4>
         </div>
     </div>
 

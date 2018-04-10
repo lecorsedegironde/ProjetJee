@@ -51,39 +51,39 @@ public class MemberSettingsServlet extends HttpServlet {
         String birthDate = req.getParameter("birthDate");
         String error = "";
 
-        if(!Objects.equals(NewLogin, OldLogin) && !Checker.checkLogin(NewLogin)) {
+        if (!Objects.equals(NewLogin, OldLogin) && !Checker.checkLogin(NewLogin)) {
             err = true;
             error += "Le login doit être unique et faire au moins 6 caractères.<br/>";
         }
 
-        if(!Objects.equals(OldPassword, user.getPassword())){
+        if (!Objects.equals(OldPassword, user.getPassword())) {
             err = true;
             error += "Votre ancien mot de passe est incorrect<br/>";
         }
 
-        if(!Checker.checkPwd(NewPassword)) {
+        if (!Checker.checkPwd(NewPassword)) {
             err = true;
             error += "Le mot de passe doit faire au moins 9 caractères.<br/>";
         }
 
-        if(!Objects.equals(email, user.getEmail()) && !Checker.checkMail(email)) {
+        if (!Objects.equals(email, user.getEmail()) && !Checker.checkMail(email)) {
             err = true;
             error += "L'email est incorrect.<br/>";
         }
 
-        if(!Checker.checkBirthDate(birthDate)) {
+        if (!Checker.checkBirthDate(birthDate)) {
             err = true;
             error += "La date de naissance est incorrecte.<br/>";
         }
 
-        if(!err) {
+        if (!err) {
             // create prefGame list for the user
-            List<Game> games= new ArrayList<>();
-            if(prefGame!=null){
-                for (String gameName:prefGame) {
+            List<Game> games = new ArrayList<>();
+            if (prefGame != null) {
+                for (String gameName : prefGame) {
                     games.add(gameDao.findByName(gameName));
                 }
-            }else{
+            } else {
                 games = null;
             }
             // hash the password
@@ -93,23 +93,23 @@ public class MemberSettingsServlet extends HttpServlet {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDate date = LocalDate.parse(birthDate, formatter);
 
-            if(!Objects.equals(NewPassword, user.getPassword())){
+            if (!Objects.equals(NewPassword, user.getPassword())) {
                 user.setPassword(NewPassword);
             }
 
-            if(!Objects.equals(NewLogin, user.getLogin())){
+            if (!Objects.equals(NewLogin, user.getLogin())) {
                 user.setLogin(NewLogin);
             }
 
-            if(!Objects.equals(email, user.getEmail())){
+            if (!Objects.equals(email, user.getEmail())) {
                 user.setEmail(email);
             }
 
-            if(!Objects.equals(date, user.getBirthDate())){
+            if (!Objects.equals(date, user.getBirthDate())) {
                 user.setBirthDate(date);
             }
 
-            if(games==null || !Objects.equals(games, user.getGames())){
+            if (games == null || !Objects.equals(games, user.getGames())) {
                 user.setGames(games);
             }
 
@@ -133,10 +133,10 @@ public class MemberSettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if(session.getAttribute("login")==null){
+        if (session.getAttribute("login") == null) {
             String toRedirect = getServletContext().getContextPath() + redirect;
             response.sendRedirect(toRedirect);
-        }else{
+        } else {
             User user = userDao.findByLogin(session.getAttribute("login").toString());
             request.setAttribute("email", user.getEmail());
             request.setAttribute("games", gameDao.findAll());

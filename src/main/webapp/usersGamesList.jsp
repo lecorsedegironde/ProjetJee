@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.*" %>
 <!DOCTYPE HTML>
 <!--
 Phantom by HTML5 UP
@@ -12,7 +11,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <title>Generic - Phantom by HTML5 UP</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="refresh" content="60; ./usersgames" />
+    <meta http-equiv="refresh" content="60; ./usersgames"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="assets/css/main.css"/>
@@ -34,19 +33,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="row uniform">
                 <table>
                     <tr>
-                        <th>Bouton d'action</th>
                         <th>Jeu en cours</th>
                         <th>Pseudo du joueur</th>
-                        <th>Date / Heure début</th>
+                        <th>Date du début</th>
+                        <th>Terminer la partie</th>
                     </tr>
                     <c:forEach var="userGame" items="${usersGames}">
                         <tr>
-                            <form action="./usersgames" method="get">
-                                <td><button type="submit" name="stop" value="${userGame.id}"/>Terminer partie</button></td>
-                            </form>
                             <td>${userGame.game.name}</td>
                             <td>${userGame.user.login}</td>
-                            <td>${userGame.startDate.dayOfMonth}/${userGame.startDate.monthValue}/${userGame.startDate.year} : ${userGame.startDate.hour}:${userGame.startDate.minute}</td>
+                            <td>${userGame.startDate.dayOfMonth}/${userGame.startDate.monthValue}/${userGame.startDate.year}
+                                : ${userGame.startDate.hour}:${userGame.startDate.minute}</td>
+                            <form action="./usersgames" method="get">
+                                <td>
+                                    <button type="submit" name="stop" value="${userGame.id}">Terminer partie</button>
+                                </td>
+                            </form>
                         </tr>
                     </c:forEach>
                 </table>

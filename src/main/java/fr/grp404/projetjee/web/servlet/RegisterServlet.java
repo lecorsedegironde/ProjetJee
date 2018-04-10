@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
-public class RegisterServlet extends HttpServlet{
+public class RegisterServlet extends HttpServlet {
 
     private final static String DATE_FORMAT = "yyyy-MM-dd";
 
@@ -64,34 +64,34 @@ public class RegisterServlet extends HttpServlet{
         String birthDate = req.getParameter("birthDate");
         String error = "";
 
-        if(userDao.findByLogin(login)!=null || !Checker.checkLogin(login)) {
+        if (userDao.findByLogin(login) != null || !Checker.checkLogin(login)) {
             userRegistered = false;
             error += "Le login doit être unique et faire au moins 6 caractères.<br/>";
         }
 
-        if(!Checker.checkPwd(password)) {
+        if (!Checker.checkPwd(password)) {
             userRegistered = false;
             error += "Le mot de passe doit faire au moins 9 caractères.<br/>";
         }
 
-        if(userDao.findByEmail(mail)!=null || !Checker.checkMail(mail)) {
+        if (userDao.findByEmail(mail) != null || !Checker.checkMail(mail)) {
             userRegistered = false;
             error += "L'email est incorrect.<br/>";
         }
 
-        if(!Checker.checkBirthDate(birthDate)) {
+        if (!Checker.checkBirthDate(birthDate)) {
             userRegistered = false;
             error += "La date de naissance est incorrecte.<br/>";
         }
 
-        if(userRegistered) {
+        if (userRegistered) {
             // create prefGame list for the user
             List<Game> games = new ArrayList<>();
-            if(prefGame!=null) {
-                for (String gameName:prefGame) {
+            if (prefGame != null) {
+                for (String gameName : prefGame) {
                     games.add(gameDao.findByName(gameName));
                 }
-            }else{
+            } else {
                 games = null;
             }
             // hash the password

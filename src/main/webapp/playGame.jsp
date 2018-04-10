@@ -1,7 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.*" %>
-<%@ page import="fr.grp404.projetjee.persistence.domain.UserGame" %>
 
 <!DOCTYPE HTML>
 <!--
@@ -11,7 +9,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Jouer</title>
+    <title>${gameName} en cours</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>

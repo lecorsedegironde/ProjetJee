@@ -1,13 +1,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Liste de parties</title>
+    <title>Liste de parties terminées</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -37,12 +36,14 @@
                         <th>Fin</th>
                         <th>Temps de jeu</th>
                     </tr>
-                    <c:forEach var="userGame" items="${listGame}" >
-                        <c:if test = "${userGame.endDate != null}">
+                    <c:forEach var="userGame" items="${listGame}">
+                        <c:if test="${userGame.endDate != null}">
                             <td>${userGame.user.login}</td>
                             <td>${userGame.game.name}</td>
-                            <td>${userGame.startDate.dayOfMonth}/${userGame.startDate.monthValue}/${userGame.startDate.year} à ${userGame.startDate.hour}:${userGame.startDate.minute}</td>
-                            <td>${userGame.endDate.dayOfMonth}/${userGame.endDate.monthValue}/${userGame.endDate.year} à ${userGame.endDate.hour}:${userGame.endDate.minute}</td>
+                            <td>${userGame.startDate.dayOfMonth}/${userGame.startDate.monthValue}/${userGame.startDate.year}
+                                à ${userGame.startDate.hour}:${userGame.startDate.minute}</td>
+                            <td>${userGame.endDate.dayOfMonth}/${userGame.endDate.monthValue}/${userGame.endDate.year}
+                                à ${userGame.endDate.hour}:${userGame.endDate.minute}</td>
                             <td><fmt:formatNumber value="${userGame.timePlayed/60}" maxFractionDigits="0"/> minutes</td>
                         </c:if>
                         </tr>

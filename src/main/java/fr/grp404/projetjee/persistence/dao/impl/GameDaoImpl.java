@@ -58,11 +58,11 @@ public class GameDaoImpl implements GameDao {
     @Override
     @Transactional
     public int findNumberPlayingGame(Game game) {
-        String query = "select Game from " + UserGame.class.getName() + " as UserGame," + Game.class.getName() + " as Game"
+        String query = "select UserGame from " + UserGame.class.getName() + " as UserGame," + Game.class.getName() + " as Game"
                 + " where UserGame." + UserGame_.game.getName() + " = Game." + Game_.id.getName()
-                + " and Game." + Game_.id.getName() + " = :id";
+                + " and Game." + Game_.id.getName() + " = :id and UserGame." + UserGame_.endDate.getName() + " is null";
 
-        TypedQuery<Game> gameTypedQuery = em.get().createQuery(query, Game.class).setParameter("id", game.getId());
+        TypedQuery<UserGame> gameTypedQuery = em.get().createQuery(query, UserGame.class).setParameter("id", game.getId());
         return gameTypedQuery.getResultList().size();
     }
 

@@ -116,7 +116,9 @@ public class User {
      * Ban user
      */
     public void ban() {
-        ban = true;
+        if (role == Role.USER) {
+            ban = true;
+        }
     }
 
     /**

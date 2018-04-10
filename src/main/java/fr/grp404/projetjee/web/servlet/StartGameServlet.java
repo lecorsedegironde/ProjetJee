@@ -1,15 +1,9 @@
 package fr.grp404.projetjee.web.servlet;
 
-import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.GameDao;
-import fr.grp404.projetjee.persistence.dao.UserDao;
-import fr.grp404.projetjee.persistence.dao.UserGameDao;
 import fr.grp404.projetjee.persistence.domain.Game;
-import fr.grp404.projetjee.persistence.domain.Role;
-import fr.grp404.projetjee.persistence.domain.User;
-import fr.grp404.projetjee.persistence.domain.UserGame;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,12 +20,6 @@ public class StartGameServlet extends HttpServlet {
 
     @Inject
     private GameDao gameDao;
-
-    @Inject
-    private UserDao userDao;
-
-    @Inject
-    private UserGameDao userGameDao;
 
     private final String redirect = "/";
 
@@ -52,13 +37,13 @@ public class StartGameServlet extends HttpServlet {
 
         if (session.getAttribute("login") != null) {
             List<Game> listGames = gameDao.findAll();
-            HashMap<String,Integer> gamePlayers = new HashMap<>();
+            HashMap<String, Integer> gamePlayers = new HashMap<>();
             for (Game g : listGames) {
-                gamePlayers.put(g.getName(),gameDao.findNumberPlayingGame(g));
+                gamePlayers.put(g.getName(), gameDao.findNumberPlayingGame(g));
             }
 
             request.setAttribute("listGames", listGames);
-            request.setAttribute("gamePlayers",gamePlayers);
+            request.setAttribute("gamePlayers", gamePlayers);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/startGame.jsp");
             try {
                 rd.forward(request, response);

@@ -23,21 +23,22 @@ public class ConnectionServlet extends HttpServlet {
     private UserDao userDao;
 
 
-    private final String redirect = "/signin";
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         boolean isLegitUser = true;
+        String error = "";
 
         String login = request.getParameter("login");
         if (login == null || login.trim().length() == 0) {
             isLegitUser = false;
+            error = "Le login et/ou le mot de passe saisis sont incorrects";
         }
 
         String pass = request.getParameter("password");
         if (pass == null || pass.trim().length() == 0) {
             isLegitUser = false;
-        }else{
+            error = "Le login et/ou le mot de passe saisis sont incorrects";
+        } else {
             // hash du mot de passe
             pass = Hashing.sha256()
                     .hashString(pass, StandardCharsets.UTF_8)
@@ -49,14 +50,19 @@ public class ConnectionServlet extends HttpServlet {
         User u = userDao.findByLogin(login);
         if (u == null) {
             isLegitUser = false;
+            error = "Le login et/ou le mot de passe saisis sont incorrects";
+        } else if (u.isBan()) {
+            isLegitUser = false;
+            error = "Vous êtes banni";
         } else if (!u.getPassword().equals(pass)) {
             isLegitUser = false;
+            error = "Le login et/ou le mot de passe saisis sont incorrects";
         }
 
         HttpSession session = request.getSession();
 
         if (!isLegitUser) {
-            request.setAttribute("erreur", 0);
+            request.setAttribute("erreur", error);
             session.removeAttribute("login");
             session.removeAttribute("admin");
             doGet(request, response);
@@ -77,15 +83,20 @@ public class ConnectionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if(session.getAttribute("login")==null){
+        if (session.getAttribute("login") == null) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/connection.jsp");
             try {
                 rd.forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
-        }else{
-            String toRedirect = getServletContext().getContextPath() + "/startgame";
+        } else {
+            String toRedirect = getServletContext().getContextPath();
+            if ((boolean) session.getAttribute("admin")) {
+                toRedirect += "/game";
+            } else {
+                toRedirect += "/startgame";
+            }
             response.sendRedirect(toRedirect);
         }
     }
