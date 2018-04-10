@@ -1,10 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.lang.*" %>
-<%
-    String error = (String) request.getAttribute("error");
-    String success = (String) request.getAttribute("success");
-%>
 <!DOCTYPE HTML>
 <!--
 Phantom by HTML5 UP
@@ -33,19 +29,23 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Liste des parties en cours</h1>
+            <h1>Liste des parties en cours : ${test}</h1>
             <div class="row uniform">
                 <table>
                     <tr>
+                        <th>Bouton d'action</th>
                         <th>Jeu en cours</th>
                         <th>Pseudo du joueur</th>
                         <th>Date / Heure début</th>
                     </tr>
-                    <c:forEach items="${usersGames}" var="userGame">
+                    <c:forEach var="userGame" items="${usersGames}">
                         <tr>
-                            <td>${userGame.userName}</td>
-                            <td>${userGame.gameName}</td>
-                            <td>${userGame.startDateHour}</td>
+                            <form action="./usersgames" method="get">
+                                <td><button type="submit" name="stop" value="${userGame.id}"/>Terminer partie</button></td>
+                            </form>
+                            <td>${userGame.game.name}</td>
+                            <td>${userGame.user.login}</td>
+                            <td>${userGame.startDate}</td>
                         </tr>
                     </c:forEach>
                 </table>
