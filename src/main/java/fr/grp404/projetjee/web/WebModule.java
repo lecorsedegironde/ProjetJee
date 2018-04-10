@@ -26,6 +26,9 @@ public class WebModule extends ServletModule {
         serve("/settings").with(MemberSettingsServlet.class);
         serve("/logout").with(LogOutServlet.class);
         serve("/usersgames").with(UsersGamesListServlet.class);
+        serve("/startgame").with(StartGameServlet.class);
+        serve("/playgame").with(PlayGameServlet.class);
+        serve("/addusergame").with(AddUserGameServlet.class);
 
         // For admins
         serve("/member").with(MemberPageServlet.class);
