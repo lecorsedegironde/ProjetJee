@@ -1,7 +1,14 @@
 package fr.grp404.projetjee.web.servlet;
 
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import fr.grp404.projetjee.persistence.dao.GameDao;
+import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.dao.UserGameDao;
+import fr.grp404.projetjee.persistence.domain.Game;
+import fr.grp404.projetjee.persistence.domain.User;
+import fr.grp404.projetjee.persistence.domain.UserGame;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +22,15 @@ import java.time.LocalDateTime;
 @Singleton
 public class PlayGameServlet extends HttpServlet {
 
+    @Inject
+    private GameDao gameDao;
+
+    @Inject
+    private UserDao userDao;
+
+    @Inject
+    private UserGameDao userGameDao;
+
     private final String redirectIndex = "/";
     private final String redirectGameErreur = "/startgame?erreur=0";
 
@@ -23,10 +39,14 @@ public class PlayGameServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String gameName = request.getParameter("menu_destination");
-        if(gameName != "") {
-            request.setAttribute("gameName", gameName);
+        if(gameName.compareTo("")!=0) {
             session.setAttribute("gameName",gameName);
-            session.setAttribute("dateDebut", LocalDateTime.now());
+            User user = userDao.findByLogin((String)session.getAttribute("login"));
+            Game game = gameDao.findByName(gameName);
+            UserGame userGame = new UserGame(user,game);
+            userGameDao.saveOrUpdate(userGame);
+
+            request.setAttribute("gameName", gameName);
             doGet(request, response);
         }
         else{

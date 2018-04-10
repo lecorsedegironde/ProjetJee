@@ -42,8 +42,7 @@ public class AddUserGameServlet extends HttpServlet {
 
         User user = userDao.findByLogin((String)session.getAttribute("login"));
         Game game = gameDao.findByName((String)session.getAttribute("gameName"));
-        UserGame userGame = new UserGame(user,game);
-        userGame.setStartDate((LocalDateTime)session.getAttribute("dateDebut"));
+        UserGame userGame = userGameDao.findCurrentByUser(user);
         userGame.stop();
         userGameDao.saveOrUpdate(userGame);
 

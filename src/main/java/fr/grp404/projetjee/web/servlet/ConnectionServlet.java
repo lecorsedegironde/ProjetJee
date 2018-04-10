@@ -85,7 +85,7 @@ public class ConnectionServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }else{
-            String toRedirect = getServletContext().getContextPath() + "/";
+            String toRedirect = getServletContext().getContextPath() + "/startgame";
             response.sendRedirect(toRedirect);
         }
     }
