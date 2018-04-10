@@ -29,9 +29,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="inner">
             <header>
                 <h1>Bienvenue sur le site du groupe 404 !</h1>
-                <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus
-                    arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam.
-                    Lorem ipsum dolor sit amet nullam dolore.</p>
+                <p>Nous mettons de super jeux à dispositions pour tous types d'écrans ! Le groupe 404 vous offre le meilleur des jeux en ligne et les catégories les plus populaires telles que les 
+			jeux de cuisine, les jeux de foot et les jeux d'habillage, ainsi que les jeux inspirés de vos films.</p>
             </header>
             <section class="tiles">
                 <article class="style1">
