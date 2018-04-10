@@ -7,7 +7,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Phantom by HTML5 UP</title>
+    <title>Jouez à jeux !</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -28,8 +28,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div id="main">
         <div class="inner">
             <header>
-                <h1>This is Phantom, a free, fully responsive site<br/>
-                    template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+                <h1>Bienvenue sur le site du groupe 404 !</h1>
                 <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus
                     arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam.
                     Lorem ipsum dolor sit amet nullam dolore.</p>
