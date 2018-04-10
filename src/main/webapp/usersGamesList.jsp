@@ -29,7 +29,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Liste des parties en cours : ${test}</h1>
+            <h1>Liste des parties en cours</h1>
             <div class="row uniform">
                 <table>
                     <tr>
@@ -45,7 +45,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             </form>
                             <td>${userGame.game.name}</td>
                             <td>${userGame.user.login}</td>
-                            <td>${userGame.startDate}</td>
+                            <td>${userGame.startDate.dayOfMonth}/${userGame.startDate.monthValue}/${userGame.startDate.year} : ${userGame.startDate.hour}:${userGame.startDate.minute}</td>
                         </tr>
                     </c:forEach>
                 </table>

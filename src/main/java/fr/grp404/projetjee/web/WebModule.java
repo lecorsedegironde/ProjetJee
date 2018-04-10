@@ -25,7 +25,6 @@ public class WebModule extends ServletModule {
         serve("/signin").with(ConnectionServlet.class);
         serve("/settings").with(MemberSettingsServlet.class);
         serve("/logout").with(LogOutServlet.class);
-        serve("/usersgames").with(UsersGamesListServlet.class);
         serve("/startgame").with(StartGameServlet.class);
         serve("/playgame").with(PlayGameServlet.class);
         serve("/addusergame").with(AddUserGameServlet.class);
@@ -34,6 +33,8 @@ public class WebModule extends ServletModule {
         serve("/member").with(MemberPageServlet.class);
         serve("/game").with(GameServlet.class);
         serve("/removeGame").with(RemoveGameServlet.class);
+        serve("/usersgames").with(UsersGamesListServlet.class);
         serve("/usergameend").with(UserGameEndServlet.class);
+        serve("/users").with(UsersListServlet.class);
     }
 }
