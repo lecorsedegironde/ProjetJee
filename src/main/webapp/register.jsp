@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.lang.*" %>
+<%@ page import="fr.grp404.projetjee.persistence.domain.Game" %>
+<%@ page import="java.util.List" %>
 <%
+    List<Game> games = (List<Game>) request.getAttribute("games");
     String error = (String) request.getAttribute("error");
     String success = (String) request.getAttribute("success");
 %>
@@ -12,7 +15,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Generic - Phantom by HTML5 UP</title>
+    <title>Inscription</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -47,18 +50,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <input name="login" id="login" placeholder="Login" type="text" required>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        <input name="pwd" id="pwd" placeholder="Password" type="password" required>
+                        <input name="pwd" id="pwd" placeholder="Mot de passe" type="password" required>
                     </div>
-                    <div class="6u$ 12u$(xsmall)">
-                        <div class="select-wrapper">
-                            <select name="prefGame" id="prefGame">
-                                <option value="0">- Jeu préféré -</option>
-                                <option value="1">Tetris</option>
-                                <option value="2">Mario</option>
-                                <option value="3">Rayman</option>
-                                <option value="4">J'en ai pas</option>
-                            </select>
-                        </div>
+                    <div class="6u 12u$(small)">
+                        <%
+                            int i = 0;
+                            for (Game game:games) {
+                        %>
+                        <input id="prefGame<%=i %>" name="prefGame[]" type="checkbox">
+                        <label for="prefGame<%=i %>"><%=game.getName() %></label>
+                        <%
+                                i++;
+                            }
+                        %>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
                         <input type="email" name="mail" id="mail" placeholder="Email" required>

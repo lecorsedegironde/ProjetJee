@@ -3,7 +3,9 @@ package fr.grp404.projetjee.web.servlet;
 import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import fr.grp404.projetjee.persistence.dao.GameDao;
 import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.Role;
 import fr.grp404.projetjee.persistence.domain.User;
 import fr.grp404.projetjee.web.Checker;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Singleton
 public class RegisterServlet extends HttpServlet{
@@ -25,6 +28,8 @@ public class RegisterServlet extends HttpServlet{
 
     @Inject
     private UserDao userDao;
+    @Inject
+    private GameDao gameDao;
 
     private void createUser(final String login, final String password,
                             final LocalDate birthDate, final String email) {
@@ -35,6 +40,8 @@ public class RegisterServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        List<Game> games = gameDao.findAll();
+        req.setAttribute("games", games);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         try {
             rd.forward(req, resp);
