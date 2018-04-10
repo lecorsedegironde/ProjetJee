@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Singleton
@@ -45,22 +46,26 @@ public class StartGameServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String erreur = request.getParameter("erreur");
-        if(erreur != null){
+        if (erreur != null) {
             request.setAttribute("erreur", 0);
         }
 
-        if(session.getAttribute("login")!= null){
+        if (session.getAttribute("login") != null) {
             List<Game> listGames = gameDao.findAll();
+            HashMap<String,Integer> gamePlayers = new HashMap<>();
+            for (Game g : listGames) {
+                gamePlayers.put(g.getName(),gameDao.findNumberPlayingGame(g));
+            }
 
             request.setAttribute("listGames", listGames);
+            request.setAttribute("gamePlayers",gamePlayers);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/startGame.jsp");
             try {
                 rd.forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             String toRedirect = getServletContext().getContextPath() + redirect;
             response.sendRedirect(toRedirect);
         }

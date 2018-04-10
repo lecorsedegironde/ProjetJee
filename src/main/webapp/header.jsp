@@ -34,6 +34,7 @@
         <% }else{
             if(admin){ %>
             <li><a href="./game">Liste des jeux</a></li>
+            <li><a href="./usergameend">Liste des parties</a></li>
             <% } %>
             <li><a href="./startgame">Jouer</a></li>
             <li><a href="./settings">Paramètres</a></li>

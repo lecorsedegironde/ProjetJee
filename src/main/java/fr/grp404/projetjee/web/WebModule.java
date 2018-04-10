@@ -34,5 +34,6 @@ public class WebModule extends ServletModule {
         serve("/member").with(MemberPageServlet.class);
         serve("/game").with(GameServlet.class);
         serve("/removeGame").with(RemoveGameServlet.class);
+        serve("/usergameend").with(UserGameEndServlet.class);
     }
 }

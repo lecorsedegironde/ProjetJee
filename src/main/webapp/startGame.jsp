@@ -42,7 +42,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <option value="">- Jeux -</option>
                             <c:forEach var="game" items="${listGames}">
                                 <!--<div class="6u 12u$(xsmall)">-->
-                                    <option value="${game.name}">${game.name}</option>
+                                    <option value="${game.name}">${game.name} : ${gamePlayers[game.name]} joueurs connectés</option>
                                 <!--</div>-->
                             </c:forEach>
                         </select>
