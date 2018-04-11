@@ -41,9 +41,6 @@ public class MainServlet extends HttpServlet {
             String password = Hashing.sha256().hashString("admin", StandardCharsets.UTF_8).toString();
             User u = new User("adminUser", password, Role.ADMIN, LocalDate.now(), "admin@admin.fr", null);
             userDao.saveOrUpdate(u);
-            String password2 = Hashing.sha256().hashString("user", StandardCharsets.UTF_8).toString();
-            User u2 = new User("userTest", password2, Role.USER, LocalDate.now(), "user@admin.fr", null);
-            userDao.saveOrUpdate(u2);
         }
 
         if (gameDao.findAll().isEmpty()) {
@@ -55,6 +52,8 @@ public class MainServlet extends HttpServlet {
             gameDao.saveOrUpdate(g3);
             Game g4 = new Game("Tetris");
             gameDao.saveOrUpdate(g4);
+            Game g5 = new Game("Age of Empire");
+            gameDao.saveOrUpdate(g5);
         }
 
         List<Game> games = gameDao.findAll();
