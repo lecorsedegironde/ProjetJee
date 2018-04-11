@@ -105,7 +105,7 @@ public class UserGameDaoImpl implements UserGameDao {
 
     @Override
     @Transactional
-    public void deleteUser(UserGame userGame) {
+    public void deleteUserGame(UserGame userGame) {
         if (userGame != null) {
             this.em.get().remove(userGame);
         }

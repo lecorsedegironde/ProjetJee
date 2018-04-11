@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 import fr.grp404.projetjee.persistence.dao.GameDao;
+import fr.grp404.projetjee.persistence.dao.UserDao;
+import fr.grp404.projetjee.persistence.dao.UserGameDao;
 import fr.grp404.projetjee.persistence.domain.Game;
 import fr.grp404.projetjee.persistence.domain.Game_;
 import fr.grp404.projetjee.persistence.domain.UserGame;
@@ -22,6 +24,13 @@ public class GameDaoImpl implements GameDao {
      */
     @Inject
     private Provider<EntityManager> em;
+
+    @Inject
+    private UserDao userDao;
+
+    @Inject
+    private UserGameDao userGameDao;
+
 
     @Override
     @Transactional
@@ -70,6 +79,10 @@ public class GameDaoImpl implements GameDao {
     @Transactional
     public void deleteGame(Game game) {
         if (game != null) {
+            List<UserGame> byGame = userGameDao.findByGame(game);
+            for (UserGame ug : byGame) {
+                userGameDao.deleteUserGame(ug);
+            }
             this.em.get().remove(game);
         }
     }

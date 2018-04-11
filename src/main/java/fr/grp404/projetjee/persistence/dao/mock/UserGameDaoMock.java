@@ -88,7 +88,7 @@ public class UserGameDaoMock implements UserGameDao {
     }
 
     @Override
-    public void deleteUser(UserGame userGame) {
+    public void deleteUserGame(UserGame userGame) {
         myUserGames.remove(userGame);
     }
 }

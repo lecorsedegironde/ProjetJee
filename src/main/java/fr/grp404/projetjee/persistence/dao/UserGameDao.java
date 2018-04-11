@@ -56,5 +56,5 @@ public interface UserGameDao {
      *
      * @param userGame to delete
      */
-    void deleteUser(UserGame userGame);
+    void deleteUserGame(UserGame userGame);
 }
