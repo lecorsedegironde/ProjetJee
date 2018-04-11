@@ -38,7 +38,8 @@ public class MemberPageServlet extends HttpServlet {
             request.setAttribute("login", user.getLogin());
             request.setAttribute("email", user.getEmail());
             request.setAttribute("birthdate", date);
-            request.setAttribute("game", userGameDao.findCurrentByUser(user));
+            request.setAttribute("banned", user.isBan());
+            request.setAttribute("game", userGameDao.findCurrentByUser(user).getGame().getName());
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/member.jsp");
             try {

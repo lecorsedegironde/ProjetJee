@@ -1,8 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    String Ulogin = (String) request.getAttribute("login");
-    String email = (String) request.getAttribute("email");
-    String birthdate = (String) request.getAttribute("birthdate");
     String game = (String) request.getAttribute("game");
 %>
 <!DOCTYPE HTML>
@@ -13,7 +11,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Page de <%=Ulogin %>
+    <title>Page de ${login}
     </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -34,13 +32,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <h1>Utilisateur : <%=Ulogin %>
-            </h1>
-            <h4>Email : <%=email %>
-            </h4>
-            <h4>Né le : <%=birthdate %>
-            </h4>
-            <h4>Joue à : <% if (game == null) { %>rien<% } else { %><%=game %><% } %></h4>
+            <h1>Utilisateur : ${login}</h1>
+            <h4>Email : ${email}</h4>
+            <h4>Né le : ${birthdate}</h4>
+            <c:if test="${banned}"><h4>Utilisateur banni</h4></c:if>
+            <c:if test="${!banned}">
+                <h4>Joue à : <c:if test="${empty game}">rien</c:if><c:if test="${not empty game}">${game}</c:if></h4>
+            </c:if>
         </div>
     </div>
 
