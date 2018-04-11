@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import fr.grp404.projetjee.persistence.dao.UserDao;
 import fr.grp404.projetjee.persistence.dao.UserGameDao;
 import fr.grp404.projetjee.persistence.domain.User;
+import fr.grp404.projetjee.persistence.domain.UserGame;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,7 +40,13 @@ public class MemberPageServlet extends HttpServlet {
             request.setAttribute("email", user.getEmail());
             request.setAttribute("birthdate", date);
             request.setAttribute("banned", user.isBan());
-            request.setAttribute("game", userGameDao.findCurrentByUser(user).getGame().getName());
+            UserGame current = userGameDao.findCurrentByUser(user);
+            if (current != null) {
+                request.setAttribute("game", current.getGame().getName());
+            } else {
+                request.setAttribute("game", null);
+
+            }
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/member.jsp");
             try {
