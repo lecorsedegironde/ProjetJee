@@ -39,7 +39,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             </header>
             <section class="tiles">
                 <c:forEach var="game" items="${games}">
-                    <c:set var="number" scope="session" value="${random.nextInt(10)}"/>
+                    <c:set var="number" scope="page" value="${random.nextInt(9)+1}"/>
                     <article class="style${number}">
 									<span class="image">
 										<img src="images/pic0${number}.jpg" alt="jeu"/>
