@@ -10,7 +10,7 @@ Le repo projetJee du groupe 404
 Avant de lancer l'application, exécuter ce code sur la base de données MySql
 
     CREATE DATABASE IF NOT EXISTS jee;  
-    CREATE USER 'jee'@'%' IDENTIFIED BY 'projetjee';  
+    CREATE USER IF NOT EXISTS 'jee'@'%' IDENTIFIED BY 'projetjee';  
     GRANT USAGE ON *.* TO  'jee'@'%' IDENTIFIED BY  'projetjee' WITH GRANT OPTION;  
     GRANT SELECT , INSERT , UPDATE , CREATE , ALTER , DELETE , DROP ON  `jee`.* TO  'jee'@'%';  
     FLUSH PRIVILEGES;
